@@ -57,10 +57,12 @@ const props = defineProps<{
   text-decoration: none;
 }
 
-.cta-button:hover::after {
-  filter: blur(1rem);
-  transition: filter .4s ease-in;
-  transform: rotate(0);
+@media (hover: hover) {
+  .cta-button:hover::after {
+    filter: blur(1rem);
+    transition: filter .4s ease-in;
+    transform: rotate(0);
+  }
 }
 
 @keyframes animateBorder {

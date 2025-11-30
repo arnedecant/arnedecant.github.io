@@ -28,7 +28,7 @@ function onClick () {
 }
 
 function render () {
-  if (!$deco.value) return
+  if (!$deco.value || 'ontouchstart' in document.documentElement) return
   $deco.value.style.setProperty('--x', `${pointer.value.x}px`)
   $deco.value.style.setProperty('--y', `${pointer.value.y}px`)
   $deco.value.innerHTML = decoString.value
@@ -89,11 +89,6 @@ watch($deco, render, { immediate: true })
   cursor: pointer;
   transition: 0.3s ease;
   transition-property: scale, box-shadow;
-
-  &:hover {
-    scale: 1.025;
-    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
-  }
 }
 
 h1 {
@@ -135,8 +130,35 @@ figure {
   }
 
   figcaption {
+    --border-width: 2px;
     z-index: 1;
     font-size: 2em;
+    width: 50%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: var(--c-background);
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(100% + (var(--border-width) * 2));
+      height: calc(100% + (var(--border-width) * 2));
+      left: calc(var(--border-width) * -1);
+      top: calc(var(--border-width) * -1);
+      background: var(--gradient-aurora-linear);
+      border-radius: 50%;
+      mix-blend-mode: darken;
+      filter: blur(0rem);
+      transition: filter 0.3s ease;
+      animation: rotate 3s linear infinite;
+      animation-play-state: paused;
+    }
   }
 }
 
@@ -196,8 +218,35 @@ figure {
 	mask-image: radial-gradient(300px circle at var(--x) var(--y), black 20%, rgba(0,0,0,0.25), transparent);
 }
 
-figure:hover .deco {
-  opacity: 1;
+@media (hover: hover) {
+  .project-summary:hover {
+    scale: 1.025;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .project-summary:hover figcaption::after {
+    animation-play-state: running;
+    filter: blur(1rem);
+  }
+
+  figure:hover .deco {
+    opacity: 1;
+  }
 }
 
+@media (hover: none) {
+  .project-summary figcaption::after {
+    animation-play-state: running;
+    filter: blur(1rem);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 </style>
