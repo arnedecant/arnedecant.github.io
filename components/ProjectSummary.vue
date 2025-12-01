@@ -53,7 +53,7 @@ watch($deco, render, { immediate: true })
         :alt="props.project.thumbnail?.alt"
       />
       <div class="deco" ref="deco" />
-      <figcaption>{{ props.project.logo?.alt }}</figcaption>
+      <figcaption>{{ props.project.title }}</figcaption>
     </figure>
     <h1>{{ props.project.title }}</h1>
     <p>
@@ -132,8 +132,11 @@ figure {
   figcaption {
     --border-width: 2px;
     z-index: 1;
-    font-size: 2em;
+    font-size: 1.25em;
+    line-height: 1.25;
+    text-align: center;
     width: 50%;
+    padding: 1rem;
     aspect-ratio: 1;
     border-radius: 50%;
     display: flex;
@@ -141,12 +144,14 @@ figure {
     justify-content: center;
     position: relative;
     background-color: var(--c-background);
+    color: var(--nyx-c-text-1);
 
     &::after {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
+      z-index: -1; // NOTE: remove if I want the text to be blended as well
       width: calc(100% + (var(--border-width) * 2));
       height: calc(100% + (var(--border-width) * 2));
       left: calc(var(--border-width) * -1);
