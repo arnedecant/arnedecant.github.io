@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { NyxButton } from 'nyx-kit/components'
+import { NyxSize, NyxTheme, NyxVariant } from 'nyx-kit/types'
 
 const { data: resume } = await useAsyncData(() => queryCollection('pages').path('/pages/resume').first())
 
@@ -28,9 +29,9 @@ function printResume() {
         <NyxButton
           class="resume-page__print"
           type="button"
-          theme="primary"
-          variant="outline"
-          size="lg"
+          :theme="NyxTheme.Primary"
+          :variant="NyxVariant.Outline"
+          :size="NyxSize.Large"
           @click="printResume"
         >
           {{ resume?.resumePrintLabel }}

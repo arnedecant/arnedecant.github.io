@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { NyxButton } from 'nyx-kit/components'
+import { NyxSize, NyxTheme, NyxVariant } from 'nyx-kit/types'
 
 const props = defineProps<{
   to: string
@@ -12,9 +13,9 @@ const props = defineProps<{
     <NyxButton
       :href="href"
       target="_self"
-      :theme="props.variant === 'critical' ? 'warning' : 'primary'"
-      :variant="props.variant === 'critical' ? 'filled' : 'outline'"
-      size="lg"
+      :theme="props.variant === 'critical' ? NyxTheme.Warning : NyxTheme.Primary"
+      :variant="props.variant === 'critical' ? NyxVariant.Filled : NyxVariant.Outline"
+      :size="NyxSize.Large"
       class="cta-button"
       @click.capture="navigate"
     >
