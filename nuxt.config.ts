@@ -1,3 +1,5 @@
+import siteContent from './data/site.json'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -5,9 +7,9 @@ export default defineNuxtConfig({
   ssr: true,
   app: {
     head: {
-      title: 'Arne Decant | Senior Software Engineer',
+      title: siteContent.seo.title,
       meta: [
-        { name: 'description', content: 'Arne Decant - software engineer building tools and interfaces.' },
+        { name: 'description', content: siteContent.seo.description },
       ],
     },
   },

@@ -1,10 +1,9 @@
 <script setup lang="ts">
 
-const props = withDefaults(defineProps<{
+const props = defineProps<{
   title?: string
-}>(), {
-  title: 'Featured projects',
-})
+}>()
+const { ui } = useAppConfig()
 
 const { data: projects } = await useAsyncData('homepage-featured-projects', () => queryCollection('projects')
   .where('featured', '=', true)
@@ -15,7 +14,7 @@ const { data: projects } = await useAsyncData('homepage-featured-projects', () =
 
 <template>
   <section class="projects container">
-    <h2>{{ props.title }}</h2>
+    <h2>{{ props.title ?? ui.featuredProjectsTitle }}</h2>
     <div class="grid">
       <ProjectSummary v-for="project in projects" :key="project.slug" :project="project" />
     </div>

@@ -1,26 +1,23 @@
 <script setup lang="ts">
 
-const props = withDefaults(defineProps<{
+const props = defineProps<{
   title?: string
   eyebrow?: string
-}>(), {
-  title: 'Home',
-  eyebrow: 'Portfolio',
-})
+}>()
 
 defineEmits<{
   (e: 'onClickCta'): void
 }>()
 
-const { socials } = useAppConfig()
+const { socials, ui } = useAppConfig()
 
 </script>
 
 <template>
   <section class="hero">
-    <span class="eyebrow">{{ props.eyebrow }}</span>
-    <h1>{{ props.title }}</h1>
-    <CtaButton to="#projects" class="hero__cta">View my projects</CtaButton>
+    <span class="eyebrow">{{ props.eyebrow ?? ui.hero.eyebrow }}</span>
+    <h1>{{ props.title ?? ui.hero.title }}</h1>
+    <CtaButton :to="ui.hero.actionTo" class="hero__cta">{{ ui.hero.actionLabel }}</CtaButton>
     <ul class="socials">
       <li v-for="social in socials" :key="social.icon">
         <NuxtLink :to="social.to" :target="social.target" :aria-label="social.ariaLabel">

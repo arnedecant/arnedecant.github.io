@@ -2,6 +2,10 @@
 title: Arne Decant
 seoDescription: Arne Decant - software engineer building tools and interfaces.
 slug: home
+heroPrimaryTo: "#work"
+heroSecondaryTo: "/about"
+workBrowseTo: "/projects"
+aboutLinkTo: "/about"
 eyebrow: Hi, my name is
 heroLabel: SENIOR SOFTWARE ENGINEER · WEB ARCHITECT
 heroTitle: I give complex products a center of gravity.

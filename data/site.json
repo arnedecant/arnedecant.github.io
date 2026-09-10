@@ -1,0 +1,93 @@
+{
+  "site": {
+    "name": "Arne Decant",
+    "role": "Senior Software Engineer",
+    "location": "Belgium",
+    "availability": "Available for senior software engineering opportunities",
+    "mark": "AD",
+    "email": "hello@arnedecant.be"
+  },
+  "socials": [
+    {
+      "icon": "line-md:github-loop",
+      "to": "https://github.com/arnedecant",
+      "target": "_blank",
+      "label": "GitHub",
+      "ariaLabel": "Arne Decant on GitHub",
+      "id": "github"
+    },
+    {
+      "icon": "line-md:linkedin",
+      "to": "https://www.linkedin.com/in/arne-decant-970b9282/",
+      "target": "_blank",
+      "label": "LinkedIn",
+      "ariaLabel": "Arne Decant on LinkedIn",
+      "id": "linkedin"
+    },
+    {
+      "icon": "line-md:email",
+      "to": "mailto:hello@arnedecant.be",
+      "label": "Email",
+      "ariaLabel": "Email Arne Decant",
+      "id": "email"
+    },
+    {
+      "icon": "line-md:instagram",
+      "to": "https://www.instagram.com/arnedecant",
+      "target": "_blank",
+      "label": "Instagram",
+      "ariaLabel": "Arne Decant on Instagram",
+      "id": "instagram"
+    }
+  ],
+  "resume": {
+    "label": "Resume",
+    "to": "/resume"
+  },
+  "seo": {
+    "title": "Arne Decant | Senior Software Engineer",
+    "description": "Arne Decant - software engineer building tools and interfaces."
+  },
+  "navigation": {
+    "brandLabel": "Arne Decant, home",
+    "openLabel": "Open navigation",
+    "closeLabel": "Close navigation",
+    "ariaLabel": "Primary navigation",
+    "currentPrefix": "CURRENT / ",
+    "links": [
+      {
+        "label": "Home",
+        "to": "/"
+      },
+      {
+        "label": "Work",
+        "to": "/#work"
+      },
+      {
+        "label": "Experience",
+        "to": "/#experience"
+      },
+      {
+        "label": "Practice",
+        "to": "/#expertise"
+      },
+      {
+        "label": "About",
+        "to": "/#about"
+      },
+      {
+        "label": "Contact",
+        "to": "/#contact"
+      }
+    ]
+  },
+  "ui": {
+    "hero": {
+      "title": "Home",
+      "eyebrow": "Portfolio",
+      "actionLabel": "View my projects",
+      "actionTo": "#projects"
+    },
+    "featuredProjectsTitle": "Featured projects"
+  }
+}

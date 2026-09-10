@@ -1,5 +1,7 @@
 ---
 title: "About Me"
+seoTitle: "About Me | Arne Decant"
+lede: "A senior software engineer drawn to the space where complex products, thoughtful interfaces, and durable systems meet."
 description: "Learn more about my journey as a Belgium-based software engineer, my love for complex interactive tools, and how I bridge design and development to build product-focused, user-friendly experiences."
 eyebrow: "ABOUT / THE PERSON BEHIND THE SYSTEMS"
 portrait:
