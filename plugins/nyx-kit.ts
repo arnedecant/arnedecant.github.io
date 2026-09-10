@@ -1,9 +1,9 @@
 import { NyxKit } from 'nyx-kit'
-import { NyxSize, NyxTheme, NyxVariant } from 'nyx-kit/types'
+import { NyxColourMode, NyxSize, NyxTheme, NyxVariant } from 'nyx-kit/types'
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(NyxKit, {
-    colourMode: { mode: 'dark' },
+    colourMode: { mode: NyxColourMode.Dark },
     defaults: {
       all: {
         theme: NyxTheme.Primary,
