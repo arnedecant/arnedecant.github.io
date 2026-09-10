@@ -3,6 +3,14 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   ssr: true,
+  app: {
+    head: {
+      title: 'Arne Decant | Senior Software Engineer',
+      meta: [
+        { name: 'description', content: 'Arne Decant - software engineer building tools and interfaces.' },
+      ],
+    },
+  },
   css: [
     '@/assets/styles/main.scss',
   ],

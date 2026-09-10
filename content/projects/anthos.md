@@ -1,6 +1,7 @@
 ---
 title: "Anthos"
 slug: "anthos"
+github: "https://github.com/NyxKit/anthos"
 summary: "A local-first plant monitoring and care platform connecting M5Stack nodes, a TypeScript ingestion server, and a Vue dashboard."
 category: "Local-first plant monitoring platform"
 role: "Product engineer"

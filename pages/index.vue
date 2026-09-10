@@ -2,6 +2,11 @@
 const { data: home } = await useAsyncData(() =>
   queryCollection('pages').path('/pages/home').first(),
 )
+
+useSeoMeta({
+  title: () => home.value?.title ?? 'Arne Decant | Senior Software Engineer',
+  description: () => home.value?.seoDescription ?? 'Arne Decant - software engineer building tools and interfaces.',
+})
 </script>
 
 <template>
