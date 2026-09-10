@@ -109,7 +109,7 @@ export default defineContentConfig({
         era: z.string().optional(),
         tech: z.array(z.string()).default([]),
         featured: z.boolean().default(false),
-        github: z.string().optional(),
+        github: z.string().url(),
         link: z.string().optional(),
         order: z.number().int().default(0),
         thumbnail: image.optional(),

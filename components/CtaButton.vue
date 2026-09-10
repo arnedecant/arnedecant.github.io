@@ -8,14 +8,15 @@ const props = defineProps<{
 </script>
 
 <template>
-  <NuxtLink custom :to="props.to" v-slot="{ href, navigate }">
+  <NuxtLink v-slot="{ href, navigate }" custom :to="props.to">
     <NyxButton
       :href="href"
+      target="_self"
       :theme="props.variant === 'critical' ? 'warning' : 'primary'"
       :variant="props.variant === 'critical' ? 'filled' : 'outline'"
       size="lg"
       class="cta-button"
-      @click="navigate"
+      @click.capture="navigate"
     >
       <slot />
     </NyxButton>

@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<{
   eyebrow: 'Portfolio',
 })
 
-const emit = defineEmits<{
+defineEmits<{
   (e: 'onClickCta'): void
 }>()
 

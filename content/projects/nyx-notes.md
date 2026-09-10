@@ -1,6 +1,7 @@
 ---
 title: "Nyx Notes"
 slug: "nyx-notes"
+github: "https://github.com/NyxKit/nyx-notes"
 summary: "A self-hosted, Markdown-first notes app where plain files remain the source of truth across web, CLI, and native surfaces."
 category: "Self-hosted Markdown notes product"
 role: "Product engineer"

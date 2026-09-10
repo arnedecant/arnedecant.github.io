@@ -6,13 +6,14 @@ import { clamp, generateRandomString } from 'nyx-kit/utils'
 const props = defineProps<{
   project: ProjectsCollectionItem
 }>()
+const destination = computed(() => props.project.link || props.project.github)
 
 const $deco = useTemplateRef<HTMLDivElement>('deco')
 const pointer = ref({ x: 0, y: 0 })
-const decoString = ref(generateRandomString(2000))
+const decoString = ref('')
 
 function onMouseMove (event: MouseEvent) {
-  if (!$deco.value) return
+  if (!destination.value || !$deco.value || !window.matchMedia('(hover: hover)').matches) return
   const rect = $deco.value.getBoundingClientRect()
   const x = event.clientX - rect.left
   const y = event.clientY - rect.top
@@ -23,27 +24,20 @@ function onMouseMove (event: MouseEvent) {
   decoString.value = generateRandomString(2000)
 }
 
-function onClick () {
-  navigateTo(props.project.link ?? props.project.github, { external: true, open: { target: '_blank' } })
+function onClick (event: MouseEvent) {
+  if (event.target instanceof Element && event.target.closest('a')) return
+  if (!destination.value) return
+  navigateTo(destination.value, { external: true, open: { target: '_blank' } })
 }
-
-function render () {
-  if (!$deco.value || 'ontouchstart' in document.documentElement) return
-  $deco.value.style.setProperty('--x', `${pointer.value.x}px`)
-  $deco.value.style.setProperty('--y', `${pointer.value.y}px`)
-  $deco.value.innerHTML = decoString.value
-  window.requestAnimationFrame(render)
-}
-
-watch($deco, render, { immediate: true })
 
 </script>
 
 <template>
   <article
     class="project-summary"
+    :class="{ 'project-summary--linked': destination }"
     @mousemove="onMouseMove"
-    @click.prevent="onClick"
+    @click="onClick"
   >
     <figure :style="{ '--x': `${pointer.x}px`, '--y': `${pointer.y}px` }">
       <img
@@ -51,8 +45,8 @@ watch($deco, render, { immediate: true })
         class="thumbnail"
         :src="props.project.thumbnail?.src"
         :alt="props.project.thumbnail?.alt"
-      />
-      <div class="deco" ref="deco" />
+      >
+      <div ref="deco" class="deco" aria-hidden="true">{{ decoString }}</div>
       <figcaption>{{ props.project.title }}</figcaption>
     </figure>
     <h1>{{ props.project.title }}</h1>
@@ -86,9 +80,12 @@ watch($deco, render, { immediate: true })
   padding: 1rem;
   background: var(--c-background);
   border: 1px solid var(--nyx-c-text-4);
-  cursor: pointer;
   transition: 0.3s ease;
   transition-property: scale, box-shadow;
+}
+
+.project-summary--linked {
+  cursor: pointer;
 }
 
 h1 {
@@ -224,23 +221,23 @@ figure {
 }
 
 @media (hover: hover) {
-  .project-summary:hover {
+  .project-summary--linked:hover {
     scale: 1.025;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
   }
 
-  .project-summary:hover figcaption::after {
+  .project-summary--linked:hover figcaption::after {
     animation-play-state: running;
     filter: blur(1rem);
   }
 
-  figure:hover .deco {
+  .project-summary--linked figure:hover .deco {
     opacity: 1;
   }
 }
 
 @media (hover: none) {
-  .project-summary figcaption::after {
+  .project-summary--linked figcaption::after {
     animation-play-state: running;
     filter: blur(1rem);
   }

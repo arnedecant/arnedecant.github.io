@@ -2,7 +2,19 @@
 const isOpen = ref(false)
 const config = useAppConfig()
 const route = useRoute()
+const router = useRouter()
 const activeSection = ref('Home')
+let observedRoute: string | undefined
+const defaultScrollBehavior = router.options.scrollBehavior
+
+// Updating the URL while scrolling must not scroll back to the section's start.
+const scrollBehavior: typeof defaultScrollBehavior = (to, from, savedPosition) => {
+  if (!savedPosition && to.fullPath === observedRoute) {
+    observedRoute = undefined
+    return false
+  }
+  return defaultScrollBehavior?.(to, from, savedPosition)
+}
 
 let sectionObserver: IntersectionObserver | undefined
 
@@ -48,7 +60,11 @@ function startSectionObserver() {
     if (!section || activeSection.value === section.label) return
 
     activeSection.value = section.label
-    window.history.replaceState(null, '', section.id ? `/#${section.id}` : '/')
+    const hash = section.id ? `#${section.id}` : ''
+    if (router.currentRoute.value.path !== '/' || router.currentRoute.value.hash === hash) return
+    const destination = { path: '/', query: router.currentRoute.value.query, hash }
+    observedRoute = router.resolve(destination).fullPath
+    void router.replace(destination)
   }, {
     rootMargin: '-20% 0px -65% 0px',
     threshold: 0,
@@ -63,8 +79,14 @@ watch(() => route.path, async () => {
   startSectionObserver()
 })
 
-onMounted(startSectionObserver)
-onBeforeUnmount(stopSectionObserver)
+onMounted(() => {
+  router.options.scrollBehavior = scrollBehavior
+  startSectionObserver()
+})
+onBeforeUnmount(() => {
+  stopSectionObserver()
+  router.options.scrollBehavior = defaultScrollBehavior
+})
 </script>
 
 <template>

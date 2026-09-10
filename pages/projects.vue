@@ -1,7 +1,5 @@
 <script setup lang="ts">
 
-const { data: home } = await useAsyncData(() => queryCollection('pages').path('/pages/home').first())
-
 const { data: projects } = await useAsyncData(() => queryCollection('projects')
   .where('featured', '=', true)
   .order('order', 'ASC')
@@ -18,4 +16,3 @@ const { data: projects } = await useAsyncData(() => queryCollection('projects')
 <style scoped lang="scss">
 
 </style>
-
