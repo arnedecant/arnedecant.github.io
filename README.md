@@ -62,3 +62,22 @@ pnpm preview  # Preview the production build
 
 Content can be edited directly in `content/` or through Nuxt Studio when it is
 enabled.
+
+## Editing site content
+
+- `content/pages/*.md`: page prose, headings, section labels, calls to action,
+  destinations, and page metadata. About and resume presentation copy lives in
+  frontmatter alongside their existing content.
+- `content/projects/*.md`: project names, summaries, technology lists, images,
+  image descriptions, and external links.
+- `data/site.json`: shared identity, social/contact links, navigation labels and
+  destinations, accessibility labels, default metadata, and reusable component
+  copy. This JSON is imported by `app.config.ts` and `nuxt.config.ts`; editing it
+  does not require changing TypeScript. It is not a Nuxt Studio collection.
+- `public/`: authored media assets, including any text embedded in artwork.
+
+Page frontmatter fields are declared in `content.config.ts`. Add new fields there
+when introducing new content, then bind them in the component. Keep visitor-facing
+words out of Vue templates, script defaults, and CSS generated content. Structural
+route IDs, icon identifiers, formatting punctuation, and technical configuration
+remain in code. Documentation remains authored in Markdown.

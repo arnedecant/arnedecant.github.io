@@ -1,11 +1,13 @@
 <script setup lang="ts">
+const config = useAppConfig()
+const contactLinks = computed(() => Object.fromEntries(config.socials.map(social => [social.id, social.to])))
 const { data: home } = await useAsyncData(() =>
   queryCollection('pages').path('/pages/home').first(),
 )
 
 useSeoMeta({
-  title: () => home.value?.title ?? 'Arne Decant | Senior Software Engineer',
-  description: () => home.value?.seoDescription ?? 'Arne Decant - software engineer building tools and interfaces.',
+  title: () => home.value?.title ?? config.seo.title,
+  description: () => home.value?.seoDescription ?? config.seo.description,
 })
 </script>
 
@@ -18,8 +20,8 @@ useSeoMeta({
         <h1 id="hero-title">{{ home?.heroTitle }}</h1>
         <p class="home-hero__lede">{{ home?.heroLede }}</p>
         <div class="home-hero__actions">
-          <CtaButton to="#work">{{ home?.heroPrimaryAction }}</CtaButton>
-          <CtaButton to="/about">{{ home?.heroSecondaryAction }}</CtaButton>
+          <CtaButton :to="home?.heroPrimaryTo ?? ''">{{ home?.heroPrimaryAction }}</CtaButton>
+          <CtaButton :to="home?.heroSecondaryTo ?? ''">{{ home?.heroSecondaryAction }}</CtaButton>
         </div>
         <div class="home-hero__meta">
           <span>{{ home?.heroLocation }}</span>
@@ -37,7 +39,7 @@ useSeoMeta({
         </div>
         <p class="section-lede">{{ home?.workLede }}</p>
         <ProjectSummaryGrid :title="home?.workProjectsTitle" />
-        <NuxtLink class="text-link" to="/projects">{{ home?.workBrowseLabel }} <span aria-hidden="true">↗</span></NuxtLink>
+        <NuxtLink class="text-link" :to="home?.workBrowseTo ?? ''">{{ home?.workBrowseLabel }} <span aria-hidden="true">↗</span></NuxtLink>
       </div>
     </section>
 
@@ -70,7 +72,7 @@ useSeoMeta({
     <SectionFrame id="about" :eyebrow="home?.aboutLabel" :title="home?.aboutTitle">
       <div class="about-preview">
         <p class="section-lede">{{ home?.aboutCopy }}</p>
-        <NuxtLink class="text-link" to="/about">{{ home?.aboutLinkLabel }} <span aria-hidden="true">↗</span></NuxtLink>
+        <NuxtLink class="text-link" :to="home?.aboutLinkTo ?? ''">{{ home?.aboutLinkLabel }} <span aria-hidden="true">↗</span></NuxtLink>
       </div>
     </SectionFrame>
 
@@ -78,9 +80,9 @@ useSeoMeta({
       <div class="contact-section__content">
         <p>{{ home?.contactCopy }}</p>
         <div class="contact-section__actions">
-          <CtaButton to="mailto:hello@arnedecant.be" variant="critical">{{ home?.contactEmailLabel }}</CtaButton>
-          <NuxtLink to="https://www.linkedin.com/in/arne-decant-970b9282/" target="_blank">{{ home?.contactLinkedInLabel }}</NuxtLink>
-          <NuxtLink to="https://github.com/arnedecant" target="_blank">{{ home?.contactGitHubLabel }}</NuxtLink>
+          <CtaButton :to="contactLinks.email" variant="critical">{{ home?.contactEmailLabel }}</CtaButton>
+          <NuxtLink :to="contactLinks.linkedin" target="_blank">{{ home?.contactLinkedInLabel }}</NuxtLink>
+          <NuxtLink :to="contactLinks.github" target="_blank">{{ home?.contactGitHubLabel }}</NuxtLink>
         </div>
         <p class="contact-section__location">{{ home?.contactLocation }}</p>
       </div>

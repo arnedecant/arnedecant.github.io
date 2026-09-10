@@ -3,7 +3,9 @@ const isOpen = ref(false)
 const config = useAppConfig()
 const route = useRoute()
 const router = useRouter()
-const activeSection = ref('Home')
+const links = config.navigation.links
+const homeLabel = computed(() => links.find(link => link.to === '/')?.label ?? '')
+const activeSection = ref(homeLabel.value)
 let observedRoute: string | undefined
 const defaultScrollBehavior = router.options.scrollBehavior
 
@@ -18,15 +20,6 @@ const scrollBehavior: typeof defaultScrollBehavior = (to, from, savedPosition) =
 
 let sectionObserver: IntersectionObserver | undefined
 
-const links = [
-  { label: 'Home', to: '/' },
-  { label: 'Work', to: '/#work' },
-  { label: 'Experience', to: '/#experience' },
-  { label: 'Practice', to: '/#expertise' },
-  { label: 'About', to: '/#about' },
-  { label: 'Contact', to: '/#contact' },
-]
-
 function closeMenu() {
   isOpen.value = false
 }
@@ -39,10 +32,10 @@ function stopSectionObserver() {
 function startSectionObserver() {
   if (!import.meta.client || route.path !== '/') return
 
-  activeSection.value = 'Home'
+  activeSection.value = homeLabel.value
 
   const sections = [
-    { id: '', label: 'Home', element: document.querySelector('.home-hero') },
+    { id: '', label: homeLabel.value, element: document.querySelector('.home-hero') },
     ...links
     .filter(link => link.to.includes('#'))
     .map(link => ({ id: link.to.split('#')[1] ?? '', label: link.label, element: document.getElementById(link.to.split('#')[1] ?? '') })),
@@ -92,8 +85,8 @@ onBeforeUnmount(() => {
 <template>
   <header class="site-nav" :class="{ 'site-nav--open': isOpen }">
     <div class="site-nav__inner">
-      <NuxtLink to="/" class="site-nav__brand" aria-label="Arne Decant, home" @click="closeMenu">
-        <span class="site-nav__mark">AD</span>
+      <NuxtLink to="/" class="site-nav__brand" :aria-label="config.navigation.brandLabel" @click="closeMenu">
+        <span class="site-nav__mark">{{ config.site.mark }}</span>
         <span>{{ config.site.name }}</span>
       </NuxtLink>
 
@@ -102,16 +95,16 @@ onBeforeUnmount(() => {
         type="button"
         :aria-expanded="isOpen"
         aria-controls="site-navigation"
-        :aria-label="isOpen ? 'Close navigation' : 'Open navigation'"
+        :aria-label="isOpen ? config.navigation.closeLabel : config.navigation.openLabel"
         @click="isOpen = !isOpen"
       >
         <span />
         <span />
       </button>
 
-      <nav id="site-navigation" class="site-nav__links" :data-section="activeSection" aria-label="Primary navigation">
+      <nav id="site-navigation" class="site-nav__links" :data-section="`${config.navigation.currentPrefix}${activeSection}`" :aria-label="config.navigation.ariaLabel">
         <div class="site-nav__menu-brand" aria-hidden="true">
-          <span class="site-nav__mark">AD</span>
+          <span class="site-nav__mark">{{ config.site.mark }}</span>
           <span>{{ config.site.name }}</span>
         </div>
         <NuxtLink v-for="link in links" :key="link.to" :to="link.to" @click="closeMenu">
@@ -264,7 +257,7 @@ onBeforeUnmount(() => {
     top: 7.5rem;
     right: var(--page-gutter);
     color: var(--c-primary);
-    content: 'CURRENT / ' attr(data-section);
+    content: attr(data-section);
     font-family: var(--font-technical);
     font-size: var(--text-label);
     letter-spacing: 0.15em;

@@ -1,9 +1,10 @@
 <script setup lang="ts">
+const config = useAppConfig()
 const { data: about } = await useAsyncData(() => queryCollection('pages').path('/pages/about').first())
 
 useSeoMeta({
-  title: () => about.value?.title ? `${about.value.title} | Arne Decant` : 'About | Arne Decant',
-  description: () => about.value?.description ?? 'The story, practice, and experiments of Arne Decant.',
+  title: () => about.value?.seoTitle ?? config.seo.title,
+  description: () => about.value?.description ?? config.seo.description,
 })
 </script>
 
@@ -12,9 +13,9 @@ useSeoMeta({
     <article class="about-page__article">
       <header class="about-page__masthead">
         <div class="about-page__intro">
-          <p class="about-page__eyebrow">{{ about?.eyebrow ?? 'ABOUT / THE PERSON BEHIND THE SYSTEMS' }}</p>
-          <h1>{{ about?.title ?? 'About Me' }}</h1>
-          <p class="about-page__dek">A senior software engineer drawn to the space where complex products, thoughtful interfaces, and durable systems meet.</p>
+          <p class="about-page__eyebrow">{{ about?.eyebrow }}</p>
+          <h1>{{ about?.title }}</h1>
+          <p class="about-page__dek">{{ about?.lede }}</p>
         </div>
 
         <figure v-if="about?.portrait?.src" class="about-page__portrait">
