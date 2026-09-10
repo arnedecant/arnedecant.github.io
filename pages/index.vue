@@ -29,7 +29,7 @@ useSeoMeta({
           </div>
           <SocialLinks />
         </div>
-        <HeroPortrait />
+        <HeroPortrait class="home-hero__portrait" aria-hidden="true" />
       </div>
     </section>
 
@@ -119,6 +119,15 @@ useSeoMeta({
   z-index: 1;
   display: grid;
   gap: var(--space-6);
+}
+
+.home-hero .home-hero__portrait {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  opacity: 0.12;
 }
 
 .home-hero h1 {
@@ -323,10 +332,17 @@ useSeoMeta({
 
 }
 
-@media (min-width: 64em) {
+@media (min-width: 64em), (min-width: 48em) and (min-height: 32em) and (orientation: landscape) {
   .home-hero__layout {
     grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
     gap: var(--space-8);
+  }
+  .home-hero .home-hero__portrait {
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+    opacity: 1;
   }
 }
 

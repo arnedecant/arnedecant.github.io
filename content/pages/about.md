@@ -4,10 +4,6 @@ seoTitle: "About Me | Arne Decant"
 lede: "A senior software engineer drawn to the space where complex products, thoughtful interfaces, and durable systems meet."
 description: "Learn more about my journey as a Belgium-based software engineer, my love for complex interactive tools, and how I bridge design and development to build product-focused, user-friendly experiences."
 eyebrow: "ABOUT / THE PERSON BEHIND THE SYSTEMS"
-portrait:
-  src: /images/about-placeholder.svg
-  alt: "Abstract placeholder portrait made from layered orbital signal lines"
-  caption: "Portrait slot, ready for a personal image."
 ---
 
 I'm Arne, a Belgium-based senior software engineer with more than a decade of experience, mostly focused on the front end. I like working on the parts of software where a lot is happening at once: complex interactive tools that still need to feel reliable, clear, and calm to use.
