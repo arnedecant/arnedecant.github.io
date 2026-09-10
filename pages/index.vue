@@ -14,20 +14,22 @@ useSeoMeta({
 <template>
   <main class="home-page">
     <section class="home-hero" aria-labelledby="hero-title">
-      <HeroParticleField />
-      <div class="home-hero__inner">
-        <TechnicalLabel>{{ home?.heroLabel }}</TechnicalLabel>
-        <h1 id="hero-title">{{ home?.heroTitle }}</h1>
-        <p class="home-hero__lede">{{ home?.heroLede }}</p>
-        <div class="home-hero__actions">
-          <CtaButton :to="home?.heroPrimaryTo ?? ''">{{ home?.heroPrimaryAction }}</CtaButton>
-          <CtaButton :to="home?.heroSecondaryTo ?? ''">{{ home?.heroSecondaryAction }}</CtaButton>
+      <div class="home-hero__layout">
+        <div class="home-hero__inner">
+          <TechnicalLabel>{{ home?.heroLabel }}</TechnicalLabel>
+          <h1 id="hero-title">{{ home?.heroTitle }}</h1>
+          <p class="home-hero__lede">{{ home?.heroLede }}</p>
+          <div class="home-hero__actions">
+            <CtaButton :to="home?.heroPrimaryTo ?? ''">{{ home?.heroPrimaryAction }}</CtaButton>
+            <CtaButton :to="home?.heroSecondaryTo ?? ''">{{ home?.heroSecondaryAction }}</CtaButton>
+          </div>
+          <div class="home-hero__meta">
+            <span>{{ home?.heroLocation }}</span>
+            <span>{{ home?.heroAvailability }}</span>
+          </div>
+          <SocialLinks />
         </div>
-        <div class="home-hero__meta">
-          <span>{{ home?.heroLocation }}</span>
-          <span>{{ home?.heroAvailability }}</span>
-        </div>
-        <SocialLinks />
+        <HeroPortrait />
       </div>
     </section>
 
@@ -100,10 +102,16 @@ useSeoMeta({
   padding: var(--space-20) 0;
 }
 
-.home-hero__inner,
+.home-hero__layout,
 .container {
   width: min(100% - (var(--page-gutter) * 2), var(--content-width));
   margin: 0 auto;
+}
+
+.home-hero__layout {
+  display: grid;
+  align-items: center;
+  gap: var(--space-12);
 }
 
 .home-hero__inner {
@@ -313,6 +321,13 @@ useSeoMeta({
     padding: var(--space-40) 0;
   }
 
+}
+
+@media (min-width: 64em) {
+  .home-hero__layout {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: var(--space-8);
+  }
 }
 
 @media (max-width: 47.99em) {
