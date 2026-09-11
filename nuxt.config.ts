@@ -32,6 +32,13 @@ export default defineNuxtConfig({
   },
 
   vite: {
+    optimizeDeps: {
+      // Pre-bundle the Markdown parser's CommonJS dependencies for the browser.
+      include: [
+        '@nuxt/content > unified > extend',
+        '@nuxt/content > @nuxtjs/mdc > remark-parse > mdast-util-from-markdown > micromark > debug',
+      ],
+    },
     resolve: {
       alias: {
         '@': new URL('./', import.meta.url).pathname,

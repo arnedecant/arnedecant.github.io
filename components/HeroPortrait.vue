@@ -26,7 +26,7 @@ const update = async () => {
 
   const currentGeneration = generation
   try {
-    const { NyxFission, MediaType, LumaKeyMode, ThemeName, NyxEvent } = await import('nyx-fission')
+    const { NyxFission, MediaType, LumaKeyMode, ThemeName, NyxEvent, EntranceAnimationType } = await import('nyx-fission')
     if (currentGeneration !== generation || !canvas.value) return
 
     const particles = new NyxFission({
@@ -36,6 +36,11 @@ const update = async () => {
       theme: ThemeName.Nyx,
       depth: 0.1,
       lumaKey: { mode: LumaKeyMode.Light, threshold: 0.2, coherence: 0.1 },
+      entrance: {
+        type: EntranceAnimationType.Vortex,
+        autoStart: true,
+        delay: 2000,
+      },
     })
     instance = particles
     particles.on(NyxEvent.Error, () => {
