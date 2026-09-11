@@ -175,6 +175,7 @@
 }
 
 .resume-links a,
+.resume-experience a,
 .resume-projects a,
 .resume-contact-links a {
   color: var(--c-text);
@@ -182,6 +183,7 @@
 }
 
 .resume-links a:hover,
+.resume-experience a:hover,
 .resume-projects a:hover,
 .resume-contact-links a:hover {
   color: var(--c-primary);

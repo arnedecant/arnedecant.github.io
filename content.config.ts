@@ -105,7 +105,7 @@ export default defineContentConfig({
         resumeExperience: z.array(resumeExperience).default([]),
         resumeSkills: z.array(resumeSkillGroup).default([]),
         resumeEducation: z.array(z.string()).default([]),
-        resumeProjects: z.array(resumeLink).default([]),
+        resumeProjects: z.array(resumeLink.extend({ to: z.string().optional() })).default([]),
       }),
     }),
 
