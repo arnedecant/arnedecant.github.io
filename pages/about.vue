@@ -18,10 +18,7 @@ useSeoMeta({
           <p class="about-page__dek">{{ about?.lede }}</p>
         </div>
 
-        <figure v-if="about?.portrait?.src" class="about-page__portrait">
-          <NuxtImg :src="about.portrait.src" :alt="about.portrait.alt ?? ''" sizes="sm:100vw md:40vw lg:30vw" />
-          <figcaption v-if="about.portrait.caption">{{ about.portrait.caption }}</figcaption>
-        </figure>
+        <HeroPortrait class="about-page__portrait" />
       </header>
 
       <div class="about-page__content">
@@ -58,8 +55,7 @@ useSeoMeta({
   grid-column: 1 / span 7;
 }
 
-.about-page__eyebrow,
-.about-page__portrait figcaption {
+.about-page__eyebrow {
   color: var(--c-primary);
   font-family: var(--font-technical);
   font-size: var(--text-label);
@@ -86,20 +82,6 @@ useSeoMeta({
 .about-page__portrait {
   grid-column: 9 / -1;
   margin: 0;
-}
-
-.about-page__portrait :deep(img) {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  border: 1px solid var(--c-border);
-  object-fit: cover;
-}
-
-.about-page__portrait figcaption {
-  margin-top: var(--space-3);
-  color: var(--c-text-muted);
-  font-size: 0.625rem;
 }
 
 .about-page__content {

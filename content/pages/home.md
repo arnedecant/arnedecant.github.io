@@ -8,8 +8,10 @@ workBrowseTo: "/projects"
 aboutLinkTo: "/about"
 eyebrow: Hi, my name is
 heroLabel: SENIOR SOFTWARE ENGINEER · WEB ARCHITECT
-heroTitle: I give complex products a center of gravity.
-heroLede: For over a decade, I’ve shaped real-time tools, design systems and interactive experiences into products that feel coherent from the inside out.
+heroTitle: |-
+  Hi, my name
+  is Arne.
+heroLede: I’m a software engineer based in Belgium. For over a decade, I’ve been building interfaces, tools, and the systems behind them. I care about how they feel to use and how they hold up over time.
 heroLocation: Based in Belgium
 heroAvailability: Available for senior software engineering opportunities
 heroPrimaryAction: Explore my work

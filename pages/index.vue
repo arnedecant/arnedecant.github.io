@@ -14,20 +14,22 @@ useSeoMeta({
 <template>
   <main class="home-page">
     <section class="home-hero" aria-labelledby="hero-title">
-      <HeroParticleField />
-      <div class="home-hero__inner">
-        <TechnicalLabel>{{ home?.heroLabel }}</TechnicalLabel>
-        <h1 id="hero-title">{{ home?.heroTitle }}</h1>
-        <p class="home-hero__lede">{{ home?.heroLede }}</p>
-        <div class="home-hero__actions">
-          <CtaButton :to="home?.heroPrimaryTo ?? ''">{{ home?.heroPrimaryAction }}</CtaButton>
-          <CtaButton :to="home?.heroSecondaryTo ?? ''">{{ home?.heroSecondaryAction }}</CtaButton>
+      <div class="home-hero__layout">
+        <div class="home-hero__inner">
+          <TechnicalLabel>{{ home?.heroLabel }}</TechnicalLabel>
+          <h1 id="hero-title">{{ home?.heroTitle }}</h1>
+          <p class="home-hero__lede">{{ home?.heroLede }}</p>
+          <div class="home-hero__actions">
+            <CtaButton :to="home?.heroPrimaryTo ?? ''">{{ home?.heroPrimaryAction }}</CtaButton>
+            <CtaButton :to="home?.heroSecondaryTo ?? ''">{{ home?.heroSecondaryAction }}</CtaButton>
+          </div>
+          <div class="home-hero__meta">
+            <span>{{ home?.heroLocation }}</span>
+            <span>{{ home?.heroAvailability }}</span>
+          </div>
+          <SocialLinks />
         </div>
-        <div class="home-hero__meta">
-          <span>{{ home?.heroLocation }}</span>
-          <span>{{ home?.heroAvailability }}</span>
-        </div>
-        <SocialLinks />
+        <HeroPortrait class="home-hero__portrait" aria-hidden="true" />
       </div>
     </section>
 
@@ -100,10 +102,16 @@ useSeoMeta({
   padding: var(--space-20) 0;
 }
 
-.home-hero__inner,
+.home-hero__layout,
 .container {
   width: min(100% - (var(--page-gutter) * 2), var(--content-width));
   margin: 0 auto;
+}
+
+.home-hero__layout {
+  display: grid;
+  align-items: center;
+  gap: var(--space-12);
 }
 
 .home-hero__inner {
@@ -113,9 +121,19 @@ useSeoMeta({
   gap: var(--space-6);
 }
 
+.home-hero .home-hero__portrait {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  opacity: 0.12;
+}
+
 .home-hero h1 {
   max-width: 18ch;
   margin: var(--space-8) 0 var(--space-4);
+  white-space: pre-line;
 }
 
 .home-hero__lede,
@@ -313,6 +331,20 @@ useSeoMeta({
     padding: var(--space-40) 0;
   }
 
+}
+
+@media (min-width: 64em), (min-width: 48em) and (min-height: 32em) and (orientation: landscape) {
+  .home-hero__layout {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: var(--space-8);
+  }
+  .home-hero .home-hero__portrait {
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+    opacity: 1;
+  }
 }
 
 @media (max-width: 47.99em) {
