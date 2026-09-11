@@ -88,12 +88,14 @@ onBeforeUnmount(() => {
   justify-self: end;
   overflow: hidden;
   pointer-events: none;
-  // Transparent gutters hide boundary particles before the fades begin,
-  // including at fractional canvas sizes and browser zoom levels.
-  mask-image:
-    linear-gradient(transparent 4%, black 16%, black 85%, transparent),
-    linear-gradient(90deg, transparent 4%, black 18%, black 82%, transparent 96%);
-  mask-composite: intersect;
+  // Feather a tall oval into the background, keeping the outer edges transparent.
+  mask-image: radial-gradient(
+    ellipse 46% 48% at 50% 50%,
+    black 55%,
+    rgb(0 0 0 / 85%) 72%,
+    rgb(0 0 0 / 35%) 88%,
+    transparent 100%
+  );
 }
 
 .hero-portrait__canvas {
