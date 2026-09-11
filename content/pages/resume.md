@@ -28,7 +28,7 @@ resumeExperience:
   - period: "2020 - present"
     company: "Kiswe"
     role: "Senior Software Engineer"
-    summary: "Frontend specialist and product-minded engineering partner working mainly on Kiswe Studio and sometimes Kiswe Command Center, products for live-stream production and fan engagement."
+    summary: "Frontend specialist and product-minded engineer working on [Kiswe Core](https://www.kiswe.com/kiswe-core) and [Kiswe Connect](https://www.kiswe.com/kiswe-connect), internally known as Kiswe Studio and Command Center, products for live-stream production and fan engagement."
     highlights:
       - "Build and evolve complex interfaces under real-time and live-production constraints."
       - "Lead the shared component library: defining patterns, shaping APIs, and solving UI problems for reuse."
@@ -53,16 +53,15 @@ resumeSkills:
   - title: "Interfaces and systems"
     items: ["Product-minded UX", "Component APIs", "Real-time interfaces", "Accessibility", "Responsive design"]
   - title: "Across the stack"
-    items: ["Node.js", "REST and SSE", "WebSockets", "PHP", "WordPress", "Git", "WebGL / Three.js"]
+    items: ["Node.js", "Nuxt", "REST and SSE", "WebSockets", "Python", "PHP", "Laravel", "WordPress", "Git", "WebGL / Three.js"]
 resumeEducation:
   - "NMCT, 2011 - 2014"
 resumeProjects:
   - label: "Nyx Kit"
-    to: "https://nyxkit.github.io/nyx-kit"
+    to: "https://nyxkit.github.io/nyx-kit/"
+  - label: "Nyx Fission"
+    to: "https://nyxkit.github.io/nyx-fission/"
   - label: "Nyx Notes"
-    to: "/projects"
   - label: "Showreal"
-    to: "/projects"
   - label: "Creative WebGL experiments"
-    to: "/projects"
 ---

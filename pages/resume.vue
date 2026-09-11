@@ -56,7 +56,7 @@ function printResume() {
               <div>
                 <h3>{{ item.role }}</h3>
                 <p class="resume-experience__company">{{ item.company }}</p>
-                <p>{{ item.summary }}</p>
+                <MDC :value="item.summary" tag="p" unwrap="p" />
                 <ul v-if="item.highlights.length">
                   <li v-for="highlight in item.highlights" :key="highlight">{{ highlight }}</li>
                 </ul>
@@ -88,7 +88,8 @@ function printResume() {
           <h2 id="resume-projects-title">{{ resume?.resumeProjectsTitle }}</h2>
           <ul class="resume-projects">
             <li v-for="item in resume.resumeProjects" :key="item.label">
-              <NuxtLink :to="item.to">{{ item.label }}</NuxtLink>
+              <NuxtLink v-if="item.to" :to="item.to">{{ item.label }}</NuxtLink>
+              <span v-else>{{ item.label }}</span>
             </li>
           </ul>
         </section>
