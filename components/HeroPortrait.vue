@@ -35,7 +35,11 @@ const update = async () => {
       type: MediaType.Video,
       theme: ThemeName.Nyx,
       depth: 0.1,
-      lumaKey: { mode: LumaKeyMode.Light, threshold: 0.2, coherence: 0.1 },
+      lumaKey: {
+        mode: LumaKeyMode.Light,
+        threshold: 0.2,
+        coherence: 0.1,
+      },
       entrance: {
         type: EntranceAnimationType.Vortex,
         autoStart: true,
