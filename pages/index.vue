@@ -133,6 +133,7 @@ useSeoMeta({
 .home-hero h1 {
   max-width: 18ch;
   margin: var(--space-8) 0 var(--space-4);
+  white-space: pre-line;
 }
 
 .home-hero__lede,
