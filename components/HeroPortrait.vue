@@ -46,7 +46,7 @@ const update = async () => {
     if (currentGeneration === generation) isReady.value = true
   }
   catch {
-    // Keep the still portrait when media playback or WebGL is unavailable.
+    // Leave the portrait empty when media playback or WebGL is unavailable.
     if (currentGeneration === generation) stop()
   }
 }
@@ -75,8 +75,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="portrait" class="hero-portrait" :class="{ 'hero-portrait--ready': isReady }" role="img" aria-label="Portrait of Arne Decant">
-    <img :src="`${baseURL}videos/portrait1-poster.jpg`" alt="" width="540" height="740" class="hero-portrait__still">
+  <div ref="portrait" class="hero-portrait" :class="{ 'hero-portrait--ready': isReady }" :role="isReady ? 'img' : undefined" :aria-label="isReady ? 'Portrait of Arne Decant' : undefined">
     <canvas ref="canvas" class="hero-portrait__canvas" aria-hidden="true" />
   </div>
 </template>
@@ -89,27 +88,18 @@ onBeforeUnmount(() => {
   justify-self: end;
   overflow: hidden;
   pointer-events: none;
-  // Fully hide the remaining letterbox particles before fading in the portrait.
+  // Transparent gutters hide boundary particles before the fades begin,
+  // including at fractional canvas sizes and browser zoom levels.
   mask-image:
     linear-gradient(transparent 4%, black 16%, black 85%, transparent),
-    linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+    linear-gradient(90deg, transparent 4%, black 18%, black 82%, transparent 96%);
   mask-composite: intersect;
 }
 
-.hero-portrait__still,
 .hero-portrait__canvas {
   display: block;
   width: 100%;
   height: 100%;
-}
-
-.hero-portrait__still {
-  object-fit: cover;
-  filter: grayscale(1);
-  opacity: 0.7;
-}
-
-.hero-portrait__canvas {
   position: absolute;
   inset: 0;
   opacity: 0;
@@ -118,7 +108,6 @@ onBeforeUnmount(() => {
 }
 
 .hero-portrait--ready {
-  .hero-portrait__still { opacity: 0; }
   .hero-portrait__canvas { opacity: 1; }
 }
 </style>
