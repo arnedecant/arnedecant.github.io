@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const config = useAppConfig()
-const { data: about } = await useAsyncData(() => queryCollection('pages').path('/pages/about').first())
+const { data: about } = await useAsyncData(() => queryCollection('pages').path('/about').first())
 
 useSeoMeta({
   title: () => about.value?.seoTitle ?? config.seo.title,
@@ -153,35 +153,6 @@ useSeoMeta({
   content: '';
 }
 
-.about-page__content :deep(blockquote) {
-  position: relative;
-  max-width: 48rem;
-  margin: clamp(4rem, 8vw, 7rem) 0;
-  padding: var(--space-6) 0 var(--space-6) clamp(2rem, 6vw, 5rem);
-  border-top: 1px solid var(--c-border-subtle);
-  border-bottom: 1px solid var(--c-border-subtle);
-  color: var(--c-text);
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  line-height: 1.25;
-}
-
-.about-page__content :deep(blockquote::before) {
-  position: absolute;
-  top: var(--space-6);
-  left: 0;
-  color: var(--c-primary);
-  content: '“';
-  font-size: 3.5rem;
-  line-height: 0.8;
-}
-
-.about-page__content :deep(blockquote p) {
-  margin: 0;
-  color: inherit;
-  font: inherit;
-}
-
 .about-page__content :deep(a) {
   color: var(--c-primary);
   text-decoration-color: color-mix(in srgb, var(--c-primary) 45%, transparent);
@@ -224,10 +195,6 @@ useSeoMeta({
   .about-page__content :deep(h2) {
     display: block;
     font-size: clamp(2.25rem, 12vw, 3.5rem);
-  }
-
-  .about-page__content :deep(blockquote) {
-    padding-left: 2rem;
   }
 }
 

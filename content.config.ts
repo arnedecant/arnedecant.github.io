@@ -43,7 +43,10 @@ export default defineContentConfig({
   collections: {
     pages: defineCollection({
       type: 'page',
-      source: 'pages/*.md',
+      source: {
+        include: 'pages/*.md',
+        prefix: '/',
+      },
       schema: z.object({
         title: z.string(),
         slug: z.string().optional(),
@@ -61,11 +64,10 @@ export default defineContentConfig({
         resumeEducationDescription: z.string().optional(),
         resumeSkillsLabel: z.string().optional(),
         resumeSkillsTitle: z.string().optional(),
-        resumeProjectsLabel: z.string().optional(),
-        resumeProjectsTitle: z.string().optional(),
+        resumeCustomersLabel: z.string().optional(),
+        resumeCustomersTitle: z.string().optional(),
         heroPrimaryTo: z.string().optional(),
         heroSecondaryTo: z.string().optional(),
-        workBrowseTo: z.string().optional(),
         aboutLinkTo: z.string().optional(),
         heroLabel: z.string().optional(),
         heroTitle: z.string().optional(),
@@ -77,7 +79,6 @@ export default defineContentConfig({
         workLabel: z.string().optional(),
         workTitle: z.string().optional(),
         workLede: z.string().optional(),
-        workBrowseLabel: z.string().optional(),
         workProjectsTitle: z.string().optional(),
         experienceLabel: z.string().optional(),
         experienceTitle: z.string().optional(),
@@ -104,8 +105,15 @@ export default defineContentConfig({
         resumeSummary: z.string().optional(),
         resumeExperience: z.array(resumeExperience).default([]),
         resumeSkills: z.array(resumeSkillGroup).default([]),
-        resumeEducation: z.array(z.string()).default([]),
-        resumeProjects: z.array(resumeLink.extend({ to: z.string().optional() })).default([]),
+        resumeEducation: z.array(z.object({
+          period: z.string(),
+          program: z.string(),
+          institution: z.string(),
+        })).default([]),
+        resumeCustomers: z.array(z.object({
+          product: z.string(),
+          customers: z.array(z.string()),
+        })).default([]),
       }),
     }),
 

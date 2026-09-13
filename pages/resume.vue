@@ -2,7 +2,7 @@
 import { NyxButton } from 'nyx-kit/components'
 import { NyxSize, NyxTheme, NyxVariant } from 'nyx-kit/types'
 
-const { data: resume } = await useAsyncData(() => queryCollection('pages').path('/pages/resume').first())
+const { data: resume } = await useAsyncData(() => queryCollection('pages').path('/resume').first())
 
 const config = useAppConfig()
 
@@ -53,20 +53,25 @@ function printResume() {
           <div class="resume-experience">
             <article v-for="item in resume?.resumeExperience" :key="`${item.company}-${item.period}`" class="resume-experience__item">
               <p class="resume-experience__period">{{ item.period }}</p>
-              <div>
+              <div class="resume-experience__details">
                 <h3>{{ item.role }}</h3>
                 <p class="resume-experience__company">{{ item.company }}</p>
-                <MDC :value="item.summary" tag="p" unwrap="p" />
-                <ul v-if="item.highlights.length">
-                  <li v-for="highlight in item.highlights" :key="highlight">{{ highlight }}</li>
-                </ul>
+                <div class="resume-experience__description">
+                  <MDC :value="item.summary" tag="p" unwrap="p" />
+                  <ul v-if="item.highlights.length">
+                    <li v-for="highlight in item.highlights" :key="highlight">{{ highlight }}</li>
+                  </ul>
+                </div>
               </div>
             </article>
-            <article v-for="item in resume?.resumeEducation" :key="item" class="resume-experience__item resume-experience__item--education">
-              <p class="resume-experience__period">{{ resume?.resumeEducationLabel }}</p>
-              <div>
-                <h3>{{ item }}</h3>
-                <p>{{ resume?.resumeEducationDescription }}</p>
+            <article v-for="item in resume?.resumeEducation" :key="`${item.program}-${item.period}`" class="resume-experience__item resume-experience__item--education" :aria-label="resume?.resumeEducationLabel">
+              <p class="resume-experience__period">{{ item.period }}</p>
+              <div class="resume-experience__details">
+                <h3>{{ item.program }}</h3>
+                <p class="resume-experience__company">{{ item.institution }}</p>
+                <div class="resume-experience__description">
+                  <p>{{ resume?.resumeEducationDescription }}</p>
+                </div>
               </div>
             </article>
           </div>
@@ -83,15 +88,15 @@ function printResume() {
           </div>
         </section>
 
-        <section v-if="resume?.resumeProjects?.length" class="resume-section" aria-labelledby="resume-projects-title">
-          <p class="resume-section__label">{{ resume?.resumeProjectsLabel }}</p>
-          <h2 id="resume-projects-title">{{ resume?.resumeProjectsTitle }}</h2>
-          <ul class="resume-projects">
-            <li v-for="item in resume.resumeProjects" :key="item.label">
-              <NuxtLink v-if="item.to" :to="item.to">{{ item.label }}</NuxtLink>
-              <span v-else>{{ item.label }}</span>
-            </li>
-          </ul>
+        <section v-if="resume?.resumeCustomers?.length" class="resume-section" aria-labelledby="resume-customers-title">
+          <p class="resume-section__label">{{ resume?.resumeCustomersLabel }}</p>
+          <h2 id="resume-customers-title">{{ resume?.resumeCustomersTitle }}</h2>
+          <dl class="resume-customers">
+            <div v-for="item in resume.resumeCustomers" :key="item.product" class="resume-customers__group">
+              <dt>{{ item.product }}</dt>
+              <dd>{{ item.customers.join(', ') }}</dd>
+            </div>
+          </dl>
         </section>
 
         <footer class="resume-sheet__contact">
@@ -101,7 +106,10 @@ function printResume() {
           </div>
           <div class="resume-contact-links">
             <a :href="`mailto:${resume?.resumeEmail ?? config.site.email}`">{{ resume?.resumeEmail ?? config.site.email }}</a>
-            <a v-for="item in resume?.resumeLinks" :key="item.label" :href="item.to" target="_blank" rel="noreferrer">{{ item.label }}</a>
+            <a v-for="item in resume?.resumeLinks" :key="item.label" :href="item.to" target="_blank" rel="noreferrer">
+              <span class="resume-contact-links__label">{{ item.label }}</span>
+              <span class="resume-contact-links__url">{{ item.to }}</span>
+            </a>
           </div>
         </footer>
       </article>

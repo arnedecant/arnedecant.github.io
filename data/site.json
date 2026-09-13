@@ -86,7 +86,7 @@
       "title": "Home",
       "eyebrow": "Portfolio",
       "actionLabel": "View my projects",
-      "actionTo": "#projects"
+      "actionTo": "#work"
     },
     "featuredProjectsTitle": "Featured projects"
   }

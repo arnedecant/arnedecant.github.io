@@ -1,10 +1,10 @@
 ---
 title: Arne Decant
+path: /
 seoDescription: Arne Decant - software engineer building tools and interfaces.
 slug: home
 heroPrimaryTo: "#work"
 heroSecondaryTo: "/about"
-workBrowseTo: "/projects"
 aboutLinkTo: "/about"
 eyebrow: Hi, my name is
 heroLabel: SENIOR SOFTWARE ENGINEER · WEB ARCHITECT
@@ -19,7 +19,6 @@ heroSecondaryAction: Read about me
 workLabel: 01 / Selected work
 workTitle: Systems I build, shape, and keep understandable.
 workLede: A selection of personal projects and experiments. Each one is a way to work through a different kind of complexity, from component APIs to physical telemetry and real-time graphics.
-workBrowseLabel: Browse all projects
 workProjectsTitle: Featured projects
 experienceLabel: 02 / Experience
 experienceTitle: A decade moving from full-lifecycle web work to high-stakes product systems.
