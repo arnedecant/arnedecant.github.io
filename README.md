@@ -33,6 +33,10 @@ application where the pages and project entries live in Markdown. It is both a
 place to explore my work and a small example of how I approach frontend
 architecture, content modeling, and visual detail.
 
+The launch includes the homepage, extended About page, and resume. Project
+summaries remain on the homepage with external demo and source links; separate
+project listing and detail pages are deferred.
+
 The site is built with:
 
 - [Nuxt 4](https://nuxt.com/) and [Vue 3](https://vuejs.org/)
@@ -81,3 +85,18 @@ when introducing new content, then bind them in the component. Keep visitor-faci
 words out of Vue templates, script defaults, and CSS generated content. Structural
 route IDs, icon identifiers, formatting punctuation, and technical configuration
 remain in code. Documentation remains authored in Markdown.
+
+### Content paths and editor previews
+
+Page content paths must match the public Vue routes because the editor uses them
+for preview navigation. The pages collection sets `source.prefix: '/'`, so
+`content/pages/resume.md` maps to `/resume` and `content/pages/about.md` maps to
+`/about`. The homepage keeps its descriptive `home.md` filename and overrides
+its path to `/` in frontmatter. Page queries use these public paths too.
+
+Project entries are currently a `data` collection for homepage summaries, with
+no detail routes. When adding detail pages, use a `page` collection with
+`source: { include: 'projects/*.md', prefix: '/projects' }` and a matching
+`pages/projects/[slug].vue` route that queries the collection by the public path.
+The content prefix sets the record's URL; the Vue page provides the route that
+renders it. This keeps `/projects/<slug>` consistent in links and editor previews.

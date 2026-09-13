@@ -2,7 +2,7 @@
 const config = useAppConfig()
 const contactLinks = computed(() => Object.fromEntries(config.socials.map(social => [social.id, social.to])))
 const { data: home } = await useAsyncData(() =>
-  queryCollection('pages').path('/pages/home').first(),
+  queryCollection('pages').path('/').first(),
 )
 
 useSeoMeta({
@@ -41,7 +41,6 @@ useSeoMeta({
         </div>
         <p class="section-lede">{{ home?.workLede }}</p>
         <ProjectSummaryGrid :title="home?.workProjectsTitle" />
-        <NuxtLink class="text-link" :to="home?.workBrowseTo ?? ''">{{ home?.workBrowseLabel }} <span aria-hidden="true">↗</span></NuxtLink>
       </div>
     </section>
 

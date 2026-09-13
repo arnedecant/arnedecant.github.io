@@ -130,18 +130,20 @@
   color: var(--c-primary);
 }
 
-.resume-experience__item--education .resume-experience__period {
-  color: var(--nyx-c-teal);
-}
-
-.resume-experience__item p:last-of-type {
+.resume-experience__description p {
   color: var(--c-text-muted);
 }
 
 .resume-experience ul {
   margin: var(--space-4) 0 0;
   padding-left: 1.25rem;
+  list-style-type: '–  ';
   color: var(--c-text-muted);
+}
+
+.resume-experience li::marker {
+  color: var(--c-primary);
+  font-weight: 600;
 }
 
 .resume-experience li + li {
@@ -164,8 +166,28 @@
   line-height: 1.6;
 }
 
-.resume-links,
-.resume-projects {
+.resume-customers {
+  display: grid;
+  gap: var(--space-6);
+  margin: 0;
+}
+
+.resume-customers__group {
+  display: grid;
+  grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
+  gap: var(--space-2) var(--space-6);
+}
+
+.resume-customers dt {
+  font-weight: 600;
+}
+
+.resume-customers dd {
+  margin: 0;
+  color: var(--c-text-muted);
+}
+
+.resume-links {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3) var(--space-6);
@@ -176,7 +198,6 @@
 
 .resume-links a,
 .resume-experience a,
-.resume-projects a,
 .resume-contact-links a {
   color: var(--c-text);
   text-underline-offset: 0.2em;
@@ -184,7 +205,6 @@
 
 .resume-links a:hover,
 .resume-experience a:hover,
-.resume-projects a:hover,
 .resume-contact-links a:hover {
   color: var(--c-primary);
 }
@@ -215,7 +235,15 @@
   color: var(--c-primary);
 }
 
+.resume-contact-links__url {
+  display: none;
+}
+
 @media (max-width: 42rem) {
+  .resume-customers__group {
+    grid-template-columns: 1fr;
+  }
+
   .resume-page__intro,
   .resume-sheet__contact {
     align-items: flex-start;
@@ -276,13 +304,18 @@
     width: 100%;
   }
 
+  .resume-sheet {
+    padding: 0;
+  }
+
   .resume-sheet,
   .resume-section {
     background: transparent !important;
   }
 
   .resume-page__intro {
-    margin-bottom: 8mm;
+    margin-bottom: 4mm;
+    padding-bottom: 0;
   }
 
   .resume-page h1 {
@@ -300,6 +333,8 @@
 
   .resume-page p,
   .resume-page li,
+  .resume-customers dt,
+  .resume-customers dd,
   .resume-page a {
     font-size: 9pt;
   }
@@ -307,6 +342,8 @@
   .resume-section {
     padding: 5mm 0;
     border-color: #bbb;
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
 
   .resume-summary > p:last-child {
@@ -314,6 +351,9 @@
   }
 
   .resume-experience__item {
+    grid-template-columns: 34mm minmax(0, 0.5fr) minmax(0, 2.15fr);
+    align-items: baseline;
+    gap: 2mm 4mm;
     padding: 3mm 0;
     border-color: #ddd;
     break-inside: avoid;
@@ -323,8 +363,37 @@
     padding-top: 0;
   }
 
+  .resume-experience__period {
+    white-space: nowrap;
+  }
+
+  .resume-experience__details {
+    display: contents;
+  }
+
+  .resume-experience__details h3 {
+    grid-column: 3;
+    grid-row: 1;
+    margin-bottom: 0;
+  }
+
+  .resume-experience__company {
+    grid-column: 2;
+    grid-row: 1;
+    margin-bottom: 0;
+  }
+
+  .resume-experience__description {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
   .resume-experience ul {
     margin-top: 2mm;
+  }
+
+  .resume-experience li::marker {
+    color: oklch(45% 0.1 235);
   }
 
   .resume-experience li + li {
@@ -335,28 +404,54 @@
     gap: 3mm;
   }
 
-  .resume-projects,
   .resume-links {
     gap: 2mm 6mm;
   }
 
+  .resume-customers {
+    gap: 3mm;
+  }
+
+  .resume-customers__group {
+    grid-template-columns: 40mm minmax(0, 1fr);
+    gap: 4mm;
+    break-inside: avoid;
+  }
+
   .resume-sheet__contact {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    align-items: start;
+    gap: 6mm;
     padding-top: 5mm;
     break-inside: avoid;
   }
 
   .resume-contact-links {
     align-items: flex-end;
+    min-width: 0;
+    text-align: right;
   }
 
-  .resume-contact-links a::after,
-  .resume-links a::after,
-  .resume-projects a::after {
+  .resume-contact-links a {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    font-size: 8pt;
+  }
+
+  .resume-contact-links__label {
+    display: none;
+  }
+
+  .resume-contact-links__url {
+    display: inline;
+  }
+
+  .resume-links a::after {
     content: ' (' attr(href) ')';
     font-size: 8pt;
   }
 
-  .resume-projects a[href^="/"]::after,
   .resume-links a[href^="#"]::after {
     content: '';
   }

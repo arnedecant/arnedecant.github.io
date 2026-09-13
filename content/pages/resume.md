@@ -9,10 +9,10 @@ resumeEducationLabel: "Education"
 resumeEducationDescription: "Multimedia and creative technology foundation."
 resumeSkillsLabel: "Capabilities"
 resumeSkillsTitle: "Skills"
-resumeProjectsLabel: "Selected work"
-resumeProjectsTitle: "Projects"
+resumeCustomersLabel: "Selected work"
+resumeCustomersTitle: "Customers and events"
 contactLabel: "Contact"
-contactTitle: "Let's talk about complex interfaces."
+contactTitle: "Let's talk"
 title: "Resume | Arne Decant"
 description: "Resume of Arne Decant, a Belgium-based senior software engineer focused on frontend architecture, complex product interfaces, and reusable systems."
 resumeTitle: "Senior Software Engineer"
@@ -23,6 +23,8 @@ resumeLinks:
     to: "https://www.linkedin.com/in/arne-decant-970b9282/"
   - label: "GitHub"
     to: "https://github.com/arnedecant"
+  - label: "Website"
+    to: "https://www.arnedecant.be"
 resumeSummary: "Belgium-based senior software engineer with 10+ years of experience building complex interactive tools and product interfaces. I specialize in frontend architecture, CSS and design systems, while working comfortably across real-time communication, backend integrations, live media, and creative technology."
 resumeExperience:
   - period: "2020 - present"
@@ -35,13 +37,13 @@ resumeExperience:
       - "Bridge product and engineering concerns with a focus on clarity, reliability, maintainability, and UX."
   - period: "2018 - 2020"
     company: "Nanopixel"
-    role: "Product Owner & Lead Developer, Showreal"
+    role: "Product Owner & Lead Developer"
     summary: "Built an interactive sales tool for real-estate showrooms, combining a touch interface, a wall display, and Node.js communication."
     highlights:
       - "Helped build Showreal from the ground up and created a small custom framework for the tool."
       - "Solved kiosk and touch interaction problems, including navigation through a custom physical cylinder."
   - period: "2014 - 2018"
-    company: "Real Internet Solutions"
+    company: "RIS"
     role: "Frontend Web Developer"
     summary: "Designed, developed, launched, and maintained WordPress sites for a broad range of clients."
     highlights:
@@ -55,13 +57,16 @@ resumeSkills:
   - title: "Across the stack"
     items: ["Node.js", "Nuxt", "REST and SSE", "WebSockets", "Python", "PHP", "Laravel", "WordPress", "Git", "WebGL / Three.js"]
 resumeEducation:
-  - "NMCT, 2011 - 2014"
-resumeProjects:
-  - label: "Nyx Kit"
-    to: "https://nyxkit.github.io/nyx-kit/"
-  - label: "Nyx Fission"
-    to: "https://nyxkit.github.io/nyx-fission/"
-  - label: "Nyx Notes"
-  - label: "Showreal"
-  - label: "Creative WebGL experiments"
+  - period: "2011 - 2014"
+    program: "Bachelor's degree: NMCT"
+    institution: "Howest"
+resumeCustomers:
+  - product: "Showreal"
+    customers: ["Versluys", "Vestio", "ION", "Degroote"]
+  - product: "Athlete Moment"
+    customers: ["Olympic Games / OBS: Tokyo (2021), Beijing (2022), Paris (2024), Milan (2026)"]
+  - product: "Kiswe Studio"
+    customers: ["ESPN", "NBA", "WNBA", "Ronde van Vlaanderen (DeRonde2020)"]
+  - product: "Kiswe Command Center"
+    customers: ["Black Sabbath", "Queen", "KISS", "BTS", "Smosh", "Good Mythical Evening"]
 ---
