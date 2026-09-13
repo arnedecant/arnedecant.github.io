@@ -47,7 +47,15 @@ function onClick (event: MouseEvent) {
         :alt="props.project.thumbnail?.alt"
       >
       <div ref="deco" class="deco" aria-hidden="true">{{ decoString }}</div>
-      <figcaption>{{ props.project.title }}</figcaption>
+      <figcaption>
+        <img
+          v-if="props.project.logo?.src"
+          class="logo"
+          :src="props.project.logo.src"
+          :alt="props.project.logo.alt ?? props.project.title"
+        >
+        <template v-else>{{ props.project.title }}</template>
+      </figcaption>
     </figure>
     <h1>{{ props.project.title }}</h1>
     <p>
@@ -142,6 +150,13 @@ figure {
     position: relative;
     background-color: var(--c-background);
     color: var(--nyx-c-text-1);
+
+    .logo {
+      display: block;
+      width: 50%;
+      height: 50%;
+      object-fit: contain;
+    }
 
     &::after {
       content: '';

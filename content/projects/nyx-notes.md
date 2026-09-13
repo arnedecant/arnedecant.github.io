@@ -14,7 +14,7 @@ tech:
   - REST
   - SSE
 featured: true
-order: 3
+order: 4
 ---
 
 Nyx Notes keeps notes as plain Markdown files, with a Rust workspace providing filesystem storage, an Axum server, authentication, a CLI, and a Tauri shell. The Vue application uses Nyx Kit and NyxEditor, with REST and typed SSE subscriptions for live note and vault data.

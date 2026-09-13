@@ -14,7 +14,7 @@ tech:
   - Vue 3
   - Tauri
 featured: true
-order: 2
+order: 3
 ---
 
 Anthos explores the full product loop from physical sensor nodes to a durable, home-hosted dashboard. Nodes push telemetry to a TypeScript server, which ingests readings, stores them, exposes API data, and serves the dashboard from the same deployment.

@@ -10,7 +10,7 @@ tech:
 featured: true
 # link: "https://arnedecant.github.io/audio-visualiser"
 github: "https://github.com/arnedecant/audio-visualiser"
-order: 3
+order: 4
 logo:
   alt: "WAV"
 ---
