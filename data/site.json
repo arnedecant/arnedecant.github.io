@@ -82,6 +82,15 @@
     ]
   },
   "ui": {
+    "error": {
+      "notFound": {
+        "title": "It seems you got lost"
+      },
+      "unexpected": {
+        "title": "Something went wrong."
+      },
+      "homeLabel": "Back to home"
+    },
     "hero": {
       "title": "Home",
       "eyebrow": "Portfolio",

@@ -8,6 +8,10 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: siteContent.seo.title,
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico?v=3', sizes: '16x16 32x32 48x48' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg?v=3', sizes: 'any' },
+      ],
       meta: [
         { name: 'description', content: siteContent.seo.description },
       ],
@@ -70,9 +74,15 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
-      routes: ['/'],
+      routes: ['/', '/404'],
       crawlLinks: true,
-      ignore: ['/studio', '/studio/**', '/_studio', '/_studio/**', '/_nuxt_studio', '/_nuxt_studio/**']
+      ignore: ['/404.html', '/studio', '/studio/**', '/_studio', '/_studio/**', '/_nuxt_studio', '/_nuxt_studio/**']
+    },
+    hooks: {
+      'prerender:generate'(route) {
+        // Replace Nuxt's empty SPA fallback with the rendered error page.
+        if (route.route === '/404') route.fileName = '/404.html'
+      },
     },
     rollupConfig: {
       // No need to externalize better-sqlite3 since we're not using it on Netlify

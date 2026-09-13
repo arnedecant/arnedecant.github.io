@@ -86,7 +86,7 @@ onBeforeUnmount(() => {
   <header class="site-nav" :class="{ 'site-nav--open': isOpen }">
     <div class="site-nav__inner">
       <NuxtLink to="/" class="site-nav__brand" :aria-label="config.navigation.brandLabel" @click="closeMenu">
-        <span class="site-nav__mark">{{ config.site.mark }}</span>
+        <img class="site-nav__mark" src="/favicon.svg?v=3" width="32" height="32" alt="">
         <span>{{ config.site.name }}</span>
       </NuxtLink>
 
@@ -104,7 +104,7 @@ onBeforeUnmount(() => {
 
       <nav id="site-navigation" class="site-nav__links" :data-section="`${config.navigation.currentPrefix}${activeSection}`" :aria-label="config.navigation.ariaLabel">
         <div class="site-nav__menu-brand" aria-hidden="true">
-          <span class="site-nav__mark">{{ config.site.mark }}</span>
+          <img class="site-nav__mark" src="/favicon.svg?v=3" width="32" height="32" alt="">
           <span>{{ config.site.name }}</span>
         </div>
         <NuxtLink v-for="link in links" :key="link.to" :to="link.to" @click="closeMenu">
@@ -152,13 +152,10 @@ onBeforeUnmount(() => {
 }
 
 .site-nav__mark {
-  display: grid;
+  display: block;
+  flex: 0 0 auto;
   width: 2rem;
   height: 2rem;
-  place-items: center;
-  border: 1px solid var(--c-primary-signal);
-  color: var(--c-primary);
-  font-size: 0.625rem;
 }
 
 .site-nav__links {
@@ -171,7 +168,8 @@ onBeforeUnmount(() => {
   display: none;
 }
 
-.site-nav__socials {
+// Override SocialLinks' display regardless of production stylesheet order.
+.site-nav__links .site-nav__socials {
   display: none;
 }
 
@@ -321,10 +319,6 @@ onBeforeUnmount(() => {
     text-transform: uppercase;
   }
 
-  .site-nav__menu-brand .site-nav__mark {
-    flex: 0 0 auto;
-  }
-
   .site-nav--open .site-nav__links::before {
     animation: nav-label-in 0.5s 0.25s both cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -369,7 +363,7 @@ onBeforeUnmount(() => {
     text-transform: uppercase;
   }
 
-  .site-nav__socials {
+  .site-nav__links .site-nav__socials {
     position: absolute;
     right: var(--page-gutter);
     bottom: 3.5rem;
