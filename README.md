@@ -73,7 +73,8 @@ enabled.
   destinations, and page metadata. About and resume presentation copy lives in
   frontmatter alongside their existing content.
 - `content/projects/*.md`: project names, summaries, technology lists, images,
-  image descriptions, and external links.
+  image descriptions, and external links. Set `abbreviation` for the circle's
+  text when a project has no logo; the full `title` remains below it.
 - `content/experience/*.md`: the single source for work and education entries,
   shared by the homepage and resume through `ExperienceList`. Use `kind: work`
   for jobs or `kind: education` for education; the homepage only queries work.

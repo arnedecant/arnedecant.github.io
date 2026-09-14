@@ -15,6 +15,9 @@ tech:
   - Tauri
 featured: true
 order: 3
+logo:
+  src: "/images/anthos-logo.svg"
+  alt: "Anthos purple circuit leaf logo"
 ---
 
 Anthos explores the full product loop from physical sensor nodes to a durable, home-hosted dashboard. Nodes push telemetry to a TypeScript server, which ingests readings, stores them, exposes API data, and serves the dashboard from the same deployment.

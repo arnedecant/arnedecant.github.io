@@ -1,5 +1,6 @@
 ---
 title: "Video Projection Mapping"
+abbreviation: "VPM"
 slug: "video-projection-mapping"
 summary: "An interactive 3D video projection mapping application built with Three.js that creates dynamic, mask-based video projections on 3D cube grids. Users can interact with different projection patterns through mouse hover effects and switch between various video-mask combinations."
 tech:

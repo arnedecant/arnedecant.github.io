@@ -54,6 +54,7 @@ function onClick (event: MouseEvent) {
           :src="props.project.logo.src"
           :alt="props.project.logo.alt ?? props.project.title"
         >
+        <span v-else-if="props.project.abbreviation" class="abbreviation">{{ props.project.abbreviation }}</span>
         <template v-else>{{ props.project.title }}</template>
       </figcaption>
     </figure>
@@ -156,6 +157,14 @@ figure {
       width: 50%;
       height: 50%;
       object-fit: contain;
+    }
+
+    .abbreviation {
+      color: var(--c-primary);
+      font-family: var(--font-technical);
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1;
     }
 
     &::after {

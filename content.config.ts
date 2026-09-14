@@ -113,6 +113,7 @@ export default defineContentConfig({
       source: 'projects/*.md',
       schema: z.object({
         title: z.string(),
+        abbreviation: z.string().optional(),
         slug: z.string(),
         summary: z.string().optional(),
         description: z.string().optional(),
