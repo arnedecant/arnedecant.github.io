@@ -6,7 +6,6 @@ resumeProfileTitle: "A frontend specialist for complex products."
 resumeBackgroundLabel: "Background"
 resumeBackgroundTitle: "Work and education"
 resumeEducationLabel: "Education"
-resumeEducationDescription: "Multimedia and creative technology foundation."
 resumeSkillsLabel: "Capabilities"
 resumeSkillsTitle: "Skills"
 resumeCustomersLabel: "Selected work"
@@ -26,29 +25,6 @@ resumeLinks:
   - label: "Website"
     to: "https://www.arnedecant.be"
 resumeSummary: "Belgium-based senior software engineer with 10+ years of experience building complex interactive tools and product interfaces. I specialize in frontend architecture, CSS and design systems, while working comfortably across real-time communication, backend integrations, live media, and creative technology."
-resumeExperience:
-  - period: "2020 - present"
-    company: "Kiswe"
-    role: "Senior Software Engineer"
-    summary: "Frontend specialist and product-minded engineer working on [Kiswe Core](https://www.kiswe.com/kiswe-core) and [Kiswe Connect](https://www.kiswe.com/kiswe-connect), internally known as Kiswe Studio and Command Center, products for live-stream production and fan engagement."
-    highlights:
-      - "Build and evolve complex interfaces under real-time and live-production constraints."
-      - "Lead the shared component library: defining patterns, shaping APIs, and solving UI problems for reuse."
-      - "Bridge product and engineering concerns with a focus on clarity, reliability, maintainability, and UX."
-  - period: "2018 - 2020"
-    company: "Nanopixel"
-    role: "Product Owner & Lead Developer"
-    summary: "Built an interactive sales tool for real-estate showrooms, combining a touch interface, a wall display, and Node.js communication."
-    highlights:
-      - "Helped build Showreal from the ground up and created a small custom framework for the tool."
-      - "Solved kiosk and touch interaction problems, including navigation through a custom physical cylinder."
-  - period: "2014 - 2018"
-    company: "RIS"
-    role: "Frontend Web Developer"
-    summary: "Designed, developed, launched, and maintained WordPress sites for a broad range of clients."
-    highlights:
-      - "Worked across design, frontend implementation, SEO, deployment, and email campaigns."
-      - "Developed a lasting specialization in CSS and SCSS while learning the full web project lifecycle."
 resumeSkills:
   - title: "Frontend architecture"
     items: ["HTML", "CSS / SCSS", "JavaScript", "TypeScript", "Vue", "React", "Design systems"]
@@ -56,10 +32,6 @@ resumeSkills:
     items: ["Product-minded UX", "Component APIs", "Real-time interfaces", "Accessibility", "Responsive design"]
   - title: "Across the stack"
     items: ["Node.js", "Nuxt", "REST and SSE", "WebSockets", "Python", "PHP", "Laravel", "WordPress", "Git", "WebGL / Three.js"]
-resumeEducation:
-  - period: "2011 - 2014"
-    program: "Bachelor's degree: NMCT"
-    institution: "Howest"
 resumeCustomers:
   - product: "Showreal"
     customers: ["Versluys", "Vestio", "ION", "Degroote"]

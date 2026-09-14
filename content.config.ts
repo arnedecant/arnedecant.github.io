@@ -8,13 +8,6 @@ const image = z.object({
   caption: z.string().optional(),
 })
 
-const experience = z.object({
-  period: z.string(),
-  company: z.string(),
-  role: z.string(),
-  summary: z.string(),
-})
-
 const expertise = z.object({
   title: z.string(),
   description: z.string(),
@@ -24,14 +17,6 @@ const expertise = z.object({
 const resumeLink = z.object({
   label: z.string(),
   to: z.string(),
-})
-
-const resumeExperience = z.object({
-  period: z.string(),
-  company: z.string(),
-  role: z.string(),
-  summary: z.string(),
-  highlights: z.array(z.string()).default([]),
 })
 
 const resumeSkillGroup = z.object({
@@ -61,7 +46,6 @@ export default defineContentConfig({
         resumeBackgroundLabel: z.string().optional(),
         resumeBackgroundTitle: z.string().optional(),
         resumeEducationLabel: z.string().optional(),
-        resumeEducationDescription: z.string().optional(),
         resumeSkillsLabel: z.string().optional(),
         resumeSkillsTitle: z.string().optional(),
         resumeCustomersLabel: z.string().optional(),
@@ -83,7 +67,6 @@ export default defineContentConfig({
         experienceLabel: z.string().optional(),
         experienceTitle: z.string().optional(),
         experienceIntro: z.string().optional(),
-        experience: z.array(experience).default([]),
         practiceLabel: z.string().optional(),
         practiceTitle: z.string().optional(),
         expertise: z.array(expertise).default([]),
@@ -103,17 +86,25 @@ export default defineContentConfig({
         resumeEmail: z.string().optional(),
         resumeLinks: z.array(resumeLink).default([]),
         resumeSummary: z.string().optional(),
-        resumeExperience: z.array(resumeExperience).default([]),
         resumeSkills: z.array(resumeSkillGroup).default([]),
-        resumeEducation: z.array(z.object({
-          period: z.string(),
-          program: z.string(),
-          institution: z.string(),
-        })).default([]),
         resumeCustomers: z.array(z.object({
           product: z.string(),
           customers: z.array(z.string()),
         })).default([]),
+      }),
+    }),
+
+    experience: defineCollection({
+      type: 'data',
+      source: 'experience/*.md',
+      schema: z.object({
+        kind: z.enum(['work', 'education']),
+        title: z.string(),
+        organization: z.string(),
+        period: z.string(),
+        summary: z.string(),
+        highlights: z.array(z.string()).default([]),
+        order: z.number().int().default(0),
       }),
     }),
 
@@ -122,6 +113,7 @@ export default defineContentConfig({
       source: 'projects/*.md',
       schema: z.object({
         title: z.string(),
+        abbreviation: z.string().optional(),
         slug: z.string(),
         summary: z.string().optional(),
         description: z.string().optional(),

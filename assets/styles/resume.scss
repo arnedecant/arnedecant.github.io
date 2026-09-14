@@ -94,62 +94,6 @@
   line-height: 1.55;
 }
 
-.resume-experience__item {
-  display: grid;
-  grid-template-columns: 9rem 1fr;
-  gap: var(--space-8);
-  padding: var(--space-8) 0;
-  border-top: 1px solid var(--c-border-subtle);
-}
-
-.resume-experience__item:first-child {
-  border-top: 0;
-  padding-top: var(--space-2);
-}
-
-.resume-experience__period,
-.resume-experience__company {
-  color: var(--nyx-c-text-3);
-  font-family: var(--font-technical);
-  font-size: var(--text-technical);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.resume-experience__period {
-  margin-bottom: 0;
-}
-
-.resume-experience h3 {
-  margin-bottom: var(--space-2);
-  font-size: 1.25rem;
-}
-
-.resume-experience__company {
-  margin-bottom: var(--space-6);
-  color: var(--c-primary);
-}
-
-.resume-experience__description p {
-  color: var(--c-text-muted);
-}
-
-.resume-experience ul {
-  margin: var(--space-4) 0 0;
-  padding-left: 1.25rem;
-  list-style-type: '–  ';
-  color: var(--c-text-muted);
-}
-
-.resume-experience li::marker {
-  color: var(--c-primary);
-  font-weight: 600;
-}
-
-.resume-experience li + li {
-  margin-top: var(--space-2);
-}
-
 .resume-skills {
   display: grid;
   gap: var(--space-6);
@@ -197,14 +141,12 @@
 }
 
 .resume-links a,
-.resume-experience a,
 .resume-contact-links a {
   color: var(--c-text);
   text-underline-offset: 0.2em;
 }
 
 .resume-links a:hover,
-.resume-experience a:hover,
 .resume-contact-links a:hover {
   color: var(--c-primary);
 }
@@ -252,11 +194,6 @@
 
   .resume-sheet {
     padding: 0;
-  }
-
-  .resume-experience__item {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
   }
 
   .resume-sheet__contact {
@@ -348,56 +285,6 @@
 
   .resume-summary > p:last-child {
     font-size: 10pt;
-  }
-
-  .resume-experience__item {
-    grid-template-columns: 34mm minmax(0, 0.5fr) minmax(0, 2.15fr);
-    align-items: baseline;
-    gap: 2mm 4mm;
-    padding: 3mm 0;
-    border-color: #ddd;
-    break-inside: avoid;
-  }
-
-  .resume-experience__item:first-child {
-    padding-top: 0;
-  }
-
-  .resume-experience__period {
-    white-space: nowrap;
-  }
-
-  .resume-experience__details {
-    display: contents;
-  }
-
-  .resume-experience__details h3 {
-    grid-column: 3;
-    grid-row: 1;
-    margin-bottom: 0;
-  }
-
-  .resume-experience__company {
-    grid-column: 2;
-    grid-row: 1;
-    margin-bottom: 0;
-  }
-
-  .resume-experience__description {
-    grid-column: 1 / -1;
-    grid-row: 2;
-  }
-
-  .resume-experience ul {
-    margin-top: 2mm;
-  }
-
-  .resume-experience li::marker {
-    color: oklch(45% 0.1 235);
-  }
-
-  .resume-experience li + li {
-    margin-top: 1mm;
   }
 
   .resume-skills {

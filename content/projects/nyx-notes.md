@@ -15,6 +15,9 @@ tech:
   - SSE
 featured: true
 order: 4
+logo:
+  src: "/images/nyx-notes-logo.svg"
+  alt: "Nyx Notes lavender N note logo"
 ---
 
 Nyx Notes keeps notes as plain Markdown files, with a Rust workspace providing filesystem storage, an Axum server, authentication, a CLI, and a Tauri shell. The Vue application uses Nyx Kit and NyxEditor, with REST and typed SSE subscriptions for live note and vault data.
