@@ -4,6 +4,10 @@ import { NyxSize, NyxTheme, NyxVariant } from 'nyx-kit/types'
 
 const { data: resume } = await useAsyncData(() => queryCollection('pages').path('/resume').first())
 
+const { data: experience } = await useAsyncData('resume-experience', () =>
+  queryCollection('experience').order('order', 'ASC').order('id', 'ASC').all(),
+)
+
 const config = useAppConfig()
 
 useSeoMeta({
@@ -45,36 +49,12 @@ function printResume() {
           <p>{{ resume.resumeSummary }}</p>
         </section>
 
-        <section v-if="resume?.resumeExperience?.length || resume?.resumeEducation?.length" class="resume-section" aria-labelledby="resume-experience-title">
+        <section v-if="experience?.length" class="resume-section" aria-labelledby="resume-experience-title">
           <div class="resume-section__heading">
             <p class="resume-section__label">{{ resume?.resumeBackgroundLabel }}</p>
             <h2 id="resume-experience-title">{{ resume?.resumeBackgroundTitle }}</h2>
           </div>
-          <div class="resume-experience">
-            <article v-for="item in resume?.resumeExperience" :key="`${item.company}-${item.period}`" class="resume-experience__item">
-              <p class="resume-experience__period">{{ item.period }}</p>
-              <div class="resume-experience__details">
-                <h3>{{ item.role }}</h3>
-                <p class="resume-experience__company">{{ item.company }}</p>
-                <div class="resume-experience__description">
-                  <MDC :value="item.summary" tag="p" unwrap="p" />
-                  <ul v-if="item.highlights.length">
-                    <li v-for="highlight in item.highlights" :key="highlight">{{ highlight }}</li>
-                  </ul>
-                </div>
-              </div>
-            </article>
-            <article v-for="item in resume?.resumeEducation" :key="`${item.program}-${item.period}`" class="resume-experience__item resume-experience__item--education" :aria-label="resume?.resumeEducationLabel">
-              <p class="resume-experience__period">{{ item.period }}</p>
-              <div class="resume-experience__details">
-                <h3>{{ item.program }}</h3>
-                <p class="resume-experience__company">{{ item.institution }}</p>
-                <div class="resume-experience__description">
-                  <p>{{ resume?.resumeEducationDescription }}</p>
-                </div>
-              </div>
-            </article>
-          </div>
+          <ExperienceList :items="experience ?? []" :education-label="resume?.resumeEducationLabel" />
         </section>
 
         <section v-if="resume?.resumeSkills?.length" class="resume-section" aria-labelledby="resume-skills-title">

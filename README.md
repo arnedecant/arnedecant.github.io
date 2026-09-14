@@ -74,6 +74,13 @@ enabled.
   frontmatter alongside their existing content.
 - `content/projects/*.md`: project names, summaries, technology lists, images,
   image descriptions, and external links.
+- `content/experience/*.md`: the single source for work and education entries,
+  shared by the homepage and resume through `ExperienceList`. Use `kind: work`
+  for jobs or `kind: education` for education; the homepage only queries work.
+  `title` holds the role or qualification, `organization` the company or school,
+  and `period` the displayed dates. `summary` supports Markdown links, and
+  `highlights` is an optional list. Set `order` to control the display sequence
+  (lowest first); the migrated entries follow the resume's newest-first order.
 - `data/site.json`: shared identity, social/contact links, navigation labels and
   destinations, accessibility labels, default metadata, and reusable component
   copy. This JSON is imported by `app.config.ts` and `nuxt.config.ts`; editing it

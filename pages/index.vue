@@ -5,6 +5,10 @@ const { data: home } = await useAsyncData(() =>
   queryCollection('pages').path('/').first(),
 )
 
+const { data: experience } = await useAsyncData('homepage-experience', () =>
+  queryCollection('experience').where('kind', '=', 'work').order('order', 'ASC').order('id', 'ASC').all(),
+)
+
 useSeoMeta({
   title: () => home.value?.title ?? config.seo.title,
   description: () => home.value?.seoDescription ?? config.seo.description,
@@ -46,16 +50,7 @@ useSeoMeta({
 
     <SectionFrame id="experience" :eyebrow="home?.experienceLabel" :title="home?.experienceTitle">
       <p class="section-lede experience-intro">{{ home?.experienceIntro }}</p>
-      <ol class="experience-list">
-        <li v-for="item in home?.experience ?? []" :key="item.company" class="experience-item">
-          <TechnicalLabel as="span">{{ item.period }}</TechnicalLabel>
-          <div>
-            <h3>{{ item.company }}</h3>
-            <p class="experience-item__role">{{ item.role }}</p>
-            <p>{{ item.summary }}</p>
-          </div>
-        </li>
-      </ol>
+      <ExperienceList :items="experience ?? []" />
     </SectionFrame>
 
     <SectionFrame id="expertise" :eyebrow="home?.practiceLabel" :title="home?.practiceTitle">
@@ -213,44 +208,15 @@ useSeoMeta({
   text-transform: uppercase;
 }
 
-.experience-list {
-  display: grid;
-  gap: var(--space-8);
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
 .experience-intro {
   margin-bottom: var(--space-8);
 }
 
-.experience-item {
-  display: grid;
-  grid-template-columns: minmax(7rem, 1fr) 3fr;
-  gap: var(--space-6);
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--c-border-subtle);
-}
-
-.experience-item h3,
 .expertise-group h3 {
   margin-bottom: var(--space-2);
   font-family: var(--font-body);
   font-size: 1.125rem;
   font-weight: 600;
-}
-
-.experience-item p {
-  max-width: var(--reading-width);
-  color: var(--c-text-muted);
-}
-
-.experience-item__role {
-  margin-bottom: var(--space-3);
-  color: var(--c-primary) !important;
-  font-family: var(--font-technical);
-  font-size: var(--text-technical);
 }
 
 .expertise-grid {
@@ -349,11 +315,6 @@ useSeoMeta({
 @media (max-width: 47.99em) {
   .expertise-grid {
     grid-template-columns: 1fr;
-  }
-
-  .experience-item {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
   }
 }
 </style>

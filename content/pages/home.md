@@ -23,19 +23,6 @@ workProjectsTitle: Featured projects
 experienceLabel: 02 / Experience
 experienceTitle: A decade moving from full-lifecycle web work to high-stakes product systems.
 experienceIntro: I'm a senior software engineer focused on frontend architecture, product ownership, and complex interactive systems. My work spans livestream production, real-time communication, browser-based 3D experiences, and reusable Vue component systems.
-experience:
-  - period: 2014–2018
-    company: RIS
-    role: Software Developer
-    summary: Built websites, email templates, SEO workflows, deployments, and custom applications for varied customers.
-  - period: 2018–2020
-    company: Nanopixel
-    role: Software Engineer · Lead Developer · Product Owner
-    summary: Built browser and kiosk-based 3D configurators, interactive maps, visualization tools, and Showreal, a multi-screen real-estate sales experience.
-  - period: 2020–2026
-    company: Kiswe
-    role: Senior Software Engineer
-    summary: Worked on browser-based products for live video production, remote participation, and large-scale streaming operations.
 practiceLabel: 03 / Practice
 practiceTitle: I work across the product, interface, and system behind it.
 expertise:
