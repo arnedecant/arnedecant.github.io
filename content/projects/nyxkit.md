@@ -11,7 +11,8 @@ link: "https://nyxkit.github.io/nyx-kit"
 github: "https://github.com/nyxkit/nyx-kit"
 order: 1
 logo:
-  alt: "NyxKit"
+  src: "/images/nyx-kit-logo.svg"
+  alt: "Nyx Kit purple ribbon monogram logo"
 ---
 
 NyxKit is my personal design system and component library that powers multiple apps and experiments.
