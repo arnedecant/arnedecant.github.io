@@ -123,6 +123,7 @@ defineProps<{
   }
 
   .experience-list__period {
+    color: oklch(45% 0.01 270);
     white-space: nowrap;
   }
 
