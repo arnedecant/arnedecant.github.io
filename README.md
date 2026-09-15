@@ -24,7 +24,7 @@ lifecycle web work.
   spaces and shapes. [View the live demo](https://arnedecant.github.io/video-projection-mapping/).
 - **[WebGL Webcam Audio Visualiser](https://github.com/arnedecant/audio-visualiser)**
   : A real-time graphics experiment where camera pixels and audio drive a
-  particle system. [View the live demo](https://dev.arnedecant.be/webgl/webcam-audio-visualizer/).
+  particle system. [View the live demo](https://arnedecant.github.io/audio-visualiser).
 
 ## About This Repository
 

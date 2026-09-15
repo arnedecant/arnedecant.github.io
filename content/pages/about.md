@@ -71,7 +71,7 @@ Outside my day job, I like mixing code, visuals, and sound.
 A few examples:
 - [Video Projection Mapping](https://github.com/arnedecant/video-projection-mapping) ([Live demo](https://arnedecant.github.io/video-projection-mapping/))
   Experiments with projecting visuals onto physical spaces and shapes using web technologies. It is a playground for mixing digital visuals with the physical world.
-- [WebGL Webcam Audio Visualizer](https://github.com/arnedecant/audio-visualiser) ([Live demo](https://dev.arnedecant.be/webgl/webcam-audio-visualizer/))
+- [WebGL Webcam Audio Visualizer](https://github.com/arnedecant/audio-visualiser) ([Live demo](https://arnedecant.github.io/audio-visualiser))
   This app takes a camera feed and turns it into a particle system. Each particle responds to the colour of a specific video pixel and to the music being played. It is part WebGL and real-time graphics experiment, part excuse to combine audio, visuals, and interactivity.
 
 I also like poking at smaller WebGL and audio-reactive experiments whenever something interesting pops into my head.

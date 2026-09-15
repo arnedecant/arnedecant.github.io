@@ -9,7 +9,7 @@ tech:
   - TypeScript
   - SCSS
 featured: true
-# link: "https://arnedecant.github.io/audio-visualiser"
+link: "https://arnedecant.github.io/audio-visualiser"
 github: "https://github.com/arnedecant/audio-visualiser"
 order: 4
 logo:
