@@ -1,12 +1,13 @@
 ---
 title: "NyxKit"
 slug: "nyxkit"
-summary: "NyxKit is a lightweight and flexible developer kit for building Vue applications. It provides a cohesive set of reusable components, utilities, and patterns designed for modern, performant, and scalable applications."
+summary: "A reusable Vue 3 component library and design system used across my applications and experiments, combining TypeScript component APIs, SCSS styling, and shared application patterns."
 tech:
   - Vue 3
   - TypeScript
   - SCSS
 featured: true
+resumeFeatured: true
 link: "https://nyxkit.github.io/nyx-kit"
 github: "https://github.com/nyxkit/nyx-kit"
 order: 1

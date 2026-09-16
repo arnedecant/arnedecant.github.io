@@ -8,6 +8,8 @@ resumeBackgroundTitle: "Work and education"
 resumeEducationLabel: "Education"
 resumeSkillsLabel: "Capabilities"
 resumeSkillsTitle: "Skills"
+resumeProjectsLabel: "Independent work"
+resumeProjectsTitle: "Selected personal projects"
 resumeCustomersLabel: "Selected work"
 resumeCustomersTitle: "Customers and events"
 contactLabel: "Contact"
@@ -27,16 +29,14 @@ resumeLinks:
 resumeSummary: "Belgium-based senior software engineer with 10+ years of experience building complex interactive tools and product interfaces. I specialize in frontend architecture, CSS and design systems, while working comfortably across real-time communication, backend integrations, live media, and creative technology."
 resumeSkills:
   - title: "Frontend architecture"
-    items: ["HTML", "CSS / SCSS", "JavaScript", "TypeScript", "Vue", "React", "Design systems"]
-  - title: "Interfaces and systems"
-    items: ["Product-minded UX", "Component APIs", "Real-time interfaces", "Accessibility", "Responsive design"]
-  - title: "Across the stack"
-    items: ["Node.js", "Nuxt", "REST and SSE", "WebSockets", "Python", "PHP", "Laravel", "WordPress", "Git", "WebGL / Three.js"]
+    items: ["HTML", "CSS / SCSS", "JavaScript", "TypeScript", "Vue", "React", "Nuxt", "Responsive design", "WebGL / Three.js"]
+  - title: "Backend architecture"
+    items: ["Node.js", "REST and SSE", "WebSockets", "Python", "PHP", "Laravel", "WordPress"]
 resumeCustomers:
   - product: "Showreal"
     customers: ["Versluys", "Vestio", "ION", "Degroote"]
   - product: "Athlete Moment"
-    customers: ["Olympic Games / OBS: Tokyo (2021), Beijing (2022), Paris (2024), Milan (2026)"]
+    customers: ["Olympic Games / OBS: Tokyo, Beijing, Paris, Milan"]
   - product: "Kiswe Studio"
     customers: ["ESPN", "NBA", "WNBA", "Ronde van Vlaanderen (DeRonde2020)"]
   - product: "Kiswe Command Center"

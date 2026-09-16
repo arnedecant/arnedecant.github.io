@@ -74,7 +74,15 @@ enabled.
   frontmatter alongside their existing content.
 - `content/projects/*.md`: project names, summaries, technology lists, images,
   image descriptions, and external links. Set `abbreviation` for the circle's
-  text when a project has no logo; the full `title` remains below it.
+  text when a project has no logo; the full `title` remains below it. Set
+  `featured: true` for the homepage and `resumeFeatured: true` for the resume.
+  Both views use the same records and generated `ProjectsCollectionItem` type;
+  edit a summary here to update it on both pages.
+- `content/expertise/*.md`: shared capability groups with a title, description,
+  and skill items. The homepage shows all groups; `resumeFeatured: true` also
+  includes a group's title and items in the resume, after its page-specific
+  skill groups. Both queries use the generated `ExpertiseCollectionItem` type.
+  Set `order` for display order on both pages.
 - `content/experience/*.md`: the single source for work and education entries,
   shared by the homepage and resume through `ExperienceList`. Use `kind: work`
   for jobs or `kind: education` for education; the homepage only queries work.
@@ -102,7 +110,7 @@ for preview navigation. The pages collection sets `source.prefix: '/'`, so
 `/about`. The homepage keeps its descriptive `home.md` filename and overrides
 its path to `/` in frontmatter. Page queries use these public paths too.
 
-Project entries are currently a `data` collection for homepage summaries, with
+Project entries are currently a `data` collection for homepage and resume summaries, with
 no detail routes. When adding detail pages, use a `page` collection with
 `source: { include: 'projects/*.md', prefix: '/projects' }` and a matching
 `pages/projects/[slug].vue` route that queries the collection by the public path.

@@ -25,43 +25,6 @@ experienceTitle: A decade moving from full-lifecycle web work to high-stakes pro
 experienceIntro: I'm a senior software engineer focused on frontend architecture, product ownership, and complex interactive systems. My work spans livestream production, real-time communication, browser-based 3D experiences, and reusable Vue component systems.
 practiceLabel: 03 / Practice
 practiceTitle: I work across the product, interface, and system behind it.
-expertise:
-  - title: Frontend architecture
-    description: Shape application structure and component APIs that keep complex workflows understandable as products evolve.
-    items:
-      - Vue 3
-      - TypeScript
-      - Nuxt
-      - Complex state and workflows
-      - Component API design
-      - Performance and maintainability
-  - title: Design systems and developer experience
-    description: Make the next change easier through reusable primitives, clear documentation, accessible defaults, and predictable APIs.
-    items:
-      - Reusable component libraries
-      - Storybook
-      - Theming and design tokens
-      - Accessibility
-      - Documentation
-      - Package architecture
-  - title: Quality and delivery
-    description: Treat testing, review, and delivery as part of the product, not a final checkpoint.
-    items:
-      - Vitest
-      - Playwright
-      - Static analysis
-      - Code review
-      - CI/CD
-      - Testing strategy
-  - title: Interactive and real-time systems
-    description: Work comfortably where timing, state, media, and visual feedback make the interface harder to reason about.
-    items:
-      - Three.js
-      - WebGL and GLSL
-      - Web Audio
-      - WebSockets
-      - Live video workflows
-      - Multi-screen experiences
 aboutLabel: 04 / About
 aboutTitle: Engineering, interaction design, and product thinking in the same room.
 aboutCopy: I'm Arne, a software engineer based in Belgium. I enjoy working where engineering, interaction design, and product thinking overlap. Outside professional product work, I experiment with generative visuals, Three.js, home automation, and self-hosted systems.

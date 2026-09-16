@@ -1,12 +1,13 @@
 ---
 title: "Nyx Fission"
 slug: "nyx-fission"
-summary: "A WebGL library that turns images, video, and webcam feeds into interactive particle fields, with entrance animations, pointer effects, and luma keying. It powers the portrait on this site."
+summary: "A framework-independent WebGL library that transforms images, video, and webcam feeds into interactive particle fields. Handles media sampling, rendering, resizing, and cleanup; powers my portfolio's animated portrait."
 tech:
   - TypeScript
   - WebGL
   - Three.js
 featured: true
+resumeFeatured: true
 link: "https://nyxkit.github.io/nyx-fission/"
 github: "https://github.com/NyxKit/nyx-fission"
 order: 2

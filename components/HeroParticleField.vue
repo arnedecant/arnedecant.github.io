@@ -364,6 +364,7 @@ onMounted(() => {
   }
   if (typeof IntersectionObserver !== 'undefined') {
     intersectionObserver = new IntersectionObserver(([entry]) => {
+      if (!entry) return
       isVisible.value = entry.isIntersecting
       if (isVisible.value) startRendering()
       else stopRendering()

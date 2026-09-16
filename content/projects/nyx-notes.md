@@ -2,7 +2,7 @@
 title: "Nyx Notes"
 slug: "nyx-notes"
 github: "https://github.com/NyxKit/nyx-notes"
-summary: "A self-hosted, Markdown-first notes app where plain files remain the source of truth across web, CLI, and native surfaces."
+summary: "A self-hosted notes application in active development, with plain Markdown files as its source of truth. Combines a Rust backend, Vue interface, CLI, and Tauri shell, with REST and typed SSE for live updates."
 category: "Self-hosted Markdown notes product"
 role: "Product engineer"
 status: "Personal project in active development"
@@ -14,6 +14,7 @@ tech:
   - REST
   - SSE
 featured: true
+resumeFeatured: true
 order: 4
 logo:
   src: "/images/nyx-notes-logo.svg"

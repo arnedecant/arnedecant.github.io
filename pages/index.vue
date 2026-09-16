@@ -9,6 +9,10 @@ const { data: experience } = await useAsyncData('homepage-experience', () =>
   queryCollection('experience').where('kind', '=', 'work').order('order', 'ASC').order('id', 'ASC').all(),
 )
 
+const { data: expertise } = await useAsyncData('homepage-expertise', () =>
+  queryCollection('expertise').order('order', 'ASC').order('id', 'ASC').all(),
+)
+
 useSeoMeta({
   title: () => home.value?.title ?? config.seo.title,
   description: () => home.value?.seoDescription ?? config.seo.description,
@@ -55,7 +59,7 @@ useSeoMeta({
 
     <SectionFrame id="expertise" :eyebrow="home?.practiceLabel" :title="home?.practiceTitle">
       <div class="expertise-grid">
-        <article v-for="group in home?.expertise ?? []" :key="group.title" class="expertise-group">
+        <article v-for="group in expertise ?? []" :key="group.id" class="expertise-group">
           <h3>{{ group.title }}</h3>
           <p>{{ group.description }}</p>
           <ul>
@@ -76,7 +80,7 @@ useSeoMeta({
       <div class="contact-section__content">
         <p>{{ home?.contactCopy }}</p>
         <div class="contact-section__actions">
-          <CtaButton :to="contactLinks.email" variant="critical">{{ home?.contactEmailLabel }}</CtaButton>
+          <CtaButton v-if="contactLinks.email" :to="contactLinks.email" variant="critical">{{ home?.contactEmailLabel }}</CtaButton>
           <NuxtLink :to="contactLinks.linkedin" target="_blank">{{ home?.contactLinkedInLabel }}</NuxtLink>
           <NuxtLink :to="contactLinks.github" target="_blank">{{ home?.contactGitHubLabel }}</NuxtLink>
         </div>

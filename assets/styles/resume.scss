@@ -268,6 +268,14 @@
     font-size: 11pt;
   }
 
+  .resume-section__label {
+    margin-bottom: 1.5mm;
+  }
+
+  .resume-section h2 {
+    margin-bottom: 3mm;
+  }
+
   .resume-page p,
   .resume-page li,
   .resume-customers dt,
@@ -281,6 +289,10 @@
     border-color: #bbb;
     page-break-inside: avoid;
     break-inside: avoid;
+  }
+
+  .resume-sheet > .resume-section:last-of-type {
+    border-bottom: 0;
   }
 
   .resume-section.resume-summary,
@@ -299,7 +311,8 @@
   }
 
   .resume-skills {
-    gap: 3mm;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3mm 6mm;
   }
 
   .resume-links {
@@ -321,6 +334,7 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
     align-items: start;
     gap: 6mm;
+    margin-top: 5mm;
     padding: 5mm 6mm;
     break-inside: avoid;
   }

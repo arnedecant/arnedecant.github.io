@@ -8,12 +8,6 @@ const image = z.object({
   caption: z.string().optional(),
 })
 
-const expertise = z.object({
-  title: z.string(),
-  description: z.string(),
-  items: z.array(z.string()),
-})
-
 const resumeLink = z.object({
   label: z.string(),
   to: z.string(),
@@ -48,6 +42,8 @@ export default defineContentConfig({
         resumeEducationLabel: z.string().optional(),
         resumeSkillsLabel: z.string().optional(),
         resumeSkillsTitle: z.string().optional(),
+        resumeProjectsLabel: z.string().optional(),
+        resumeProjectsTitle: z.string().optional(),
         resumeCustomersLabel: z.string().optional(),
         resumeCustomersTitle: z.string().optional(),
         heroPrimaryTo: z.string().optional(),
@@ -69,7 +65,6 @@ export default defineContentConfig({
         experienceIntro: z.string().optional(),
         practiceLabel: z.string().optional(),
         practiceTitle: z.string().optional(),
-        expertise: z.array(expertise).default([]),
         aboutLabel: z.string().optional(),
         aboutTitle: z.string().optional(),
         aboutCopy: z.string().optional(),
@@ -108,6 +103,18 @@ export default defineContentConfig({
       }),
     }),
 
+    expertise: defineCollection({
+      type: 'data',
+      source: 'expertise/*.md',
+      schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        items: z.array(z.string()),
+        resumeFeatured: z.boolean().default(false),
+        order: z.number().int().default(0),
+      }),
+    }),
+
     projects: defineCollection({
       type: 'data',
       source: 'projects/*.md',
@@ -126,6 +133,7 @@ export default defineContentConfig({
         era: z.string().optional(),
         tech: z.array(z.string()).default([]),
         featured: z.boolean().default(false),
+        resumeFeatured: z.boolean().default(false),
         github: z.string().url(),
         link: z.string().optional(),
         order: z.number().int().default(0),
