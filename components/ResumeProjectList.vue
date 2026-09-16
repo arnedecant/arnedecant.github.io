@@ -12,6 +12,7 @@ defineProps<{
       <div class="resume-projects__heading">
         <h3>
           <a :href="project.link || project.github" target="_blank" rel="noreferrer">{{ project.title }}</a>
+          <span class="resume-projects__repository">(<a :href="project.github" target="_blank" rel="noreferrer">{{ project.github }}</a>)</span>
         </h3>
         <p v-if="project.tech.length" class="resume-projects__tech">{{ project.tech.join(' / ') }}</p>
       </div>
@@ -68,6 +69,22 @@ defineProps<{
   line-height: 1.6;
 }
 
+.resume-projects__repository {
+  display: inline-block;
+  max-width: 100%;
+  margin-left: var(--space-2);
+  color: var(--c-text-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-technical);
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+
+.resume-projects__repository a {
+  color: inherit;
+  font-size: inherit;
+}
+
 @media print {
   .resume-projects {
     gap: 3mm;
@@ -80,6 +97,11 @@ defineProps<{
 
   .resume-projects__tech {
     font-size: 8pt;
+  }
+
+  .resume-projects__repository {
+    font-size: 7.5pt;
+    line-height: 1.4;
   }
 }
 </style>
