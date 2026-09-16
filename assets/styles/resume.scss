@@ -306,8 +306,17 @@
     break-inside: avoid;
   }
 
+  .resume-section:not(.resume-summary) {
+    margin-inline: 6mm;
+    padding-inline: 0;
+  }
+
+  .resume-sheet > .resume-section:last-of-type,
   .resume-second-page > .resume-section:last-of-type {
     border-bottom: 0;
+  }
+
+  .resume-second-page > .resume-section:last-of-type {
     margin-bottom: 5mm;
   }
 
