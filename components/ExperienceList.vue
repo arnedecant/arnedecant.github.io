@@ -22,7 +22,9 @@ defineProps<{
         <div class="experience-list__description">
           <MDC :value="item.summary" tag="p" unwrap="p" />
           <ul v-if="item.highlights.length">
-            <li v-for="highlight in item.highlights" :key="highlight">{{ highlight }}</li>
+            <li v-for="highlight in item.highlights" :key="highlight">
+              <MDC :value="highlight" tag="span" unwrap="p" />
+            </li>
           </ul>
         </div>
       </div>

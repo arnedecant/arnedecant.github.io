@@ -246,13 +246,13 @@
   }
 
   .resume-sheet,
-  .resume-section {
+  .resume-section:not(.resume-summary) {
     background: transparent !important;
   }
 
   .resume-page__intro {
     margin-bottom: 4mm;
-    padding-bottom: 0;
+    padding: 5mm 6mm 2mm;
   }
 
   .resume-page h1 {
@@ -277,10 +277,21 @@
   }
 
   .resume-section {
-    padding: 5mm 0;
+    padding: 5mm 6mm;
     border-color: #bbb;
     page-break-inside: avoid;
     break-inside: avoid;
+  }
+
+  .resume-section.resume-summary,
+  .resume-sheet__contact {
+    --c-text: oklch(96% 0.005 270);
+    --c-text-muted: oklch(88% 0.008 270);
+    --c-primary: oklch(82% 0.09 235);
+    max-width: none;
+    border: 0;
+    background: oklch(32% 0.01 270);
+    color: var(--c-text);
   }
 
   .resume-summary > p:last-child {
@@ -310,7 +321,7 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
     align-items: start;
     gap: 6mm;
-    padding-top: 5mm;
+    padding: 5mm 6mm;
     break-inside: avoid;
   }
 
