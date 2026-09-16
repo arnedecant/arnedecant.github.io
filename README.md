@@ -34,7 +34,7 @@ place to explore my work and a small example of how I approach frontend
 architecture, content modeling, and visual detail.
 
 The launch includes the homepage, extended About page, and resume. Project
-summaries remain on the homepage with external demo and source links; separate
+summaries are shared across these pages with external demo and source links; separate
 project listing and detail pages are deferred.
 
 The site is built with:
@@ -75,9 +75,10 @@ enabled.
 - `content/projects/*.md`: project names, summaries, technology lists, images,
   image descriptions, and external links. Set `abbreviation` for the circle's
   text when a project has no logo; the full `title` remains below it. Set
-  `featured: true` for the homepage and `resumeFeatured: true` for the resume.
-  Both views use the same records and generated `ProjectsCollectionItem` type;
-  edit a summary here to update it on both pages.
+  `featured: true` for the homepage and About page, and `resumeFeatured: true`
+  for the resume. All three views use the same records and generated
+  `ProjectsCollectionItem` type; edit a summary here to update it everywhere.
+  The About page embeds its list in Markdown through `AboutProjectList`.
 - `content/expertise/*.md`: shared capability groups with a title, description,
   and skill items. The homepage shows all groups; `resumeFeatured: true` also
   includes a group's title and items in the resume, after its page-specific
@@ -110,7 +111,7 @@ for preview navigation. The pages collection sets `source.prefix: '/'`, so
 `/about`. The homepage keeps its descriptive `home.md` filename and overrides
 its path to `/` in frontmatter. Page queries use these public paths too.
 
-Project entries are currently a `data` collection for homepage and resume summaries, with
+Project entries are currently a `data` collection for home, About, and resume summaries, with
 no detail routes. When adding detail pages, use a `page` collection with
 `source: { include: 'projects/*.md', prefix: '/projects' }` and a matching
 `pages/projects/[slug].vue` route that queries the collection by the public path.

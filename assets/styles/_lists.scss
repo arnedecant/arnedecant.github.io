@@ -1,0 +1,15 @@
+@mixin content-list {
+  margin: var(--space-4) 0 0;
+  padding-left: 1.25rem;
+  list-style-type: '–  ';
+  color: var(--c-text-muted);
+
+  li::marker {
+    color: var(--c-primary);
+    font-weight: 600;
+  }
+
+  li + li {
+    margin-top: var(--space-2);
+  }
+}

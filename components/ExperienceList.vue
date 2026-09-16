@@ -33,6 +33,8 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
+@use '@/assets/styles/lists' as lists;
+
 .experience-list h3,
 .experience-list p {
   margin-top: 0;
@@ -79,19 +81,7 @@ defineProps<{
 }
 
 .experience-list ul {
-  margin: var(--space-4) 0 0;
-  padding-left: 1.25rem;
-  list-style-type: '–  ';
-  color: var(--c-text-muted);
-}
-
-.experience-list li::marker {
-  color: var(--c-primary);
-  font-weight: 600;
-}
-
-.experience-list li + li {
-  margin-top: var(--space-2);
+  @include lists.content-list;
 }
 
 .experience-list :deep(a) {
@@ -154,11 +144,11 @@ defineProps<{
     margin-top: 2mm;
   }
 
-  .experience-list li::marker {
+  .experience-list ul li::marker {
     color: oklch(45% 0.1 235);
   }
 
-  .experience-list li + li {
+  .experience-list ul li + li {
     margin-top: 1mm;
   }
 

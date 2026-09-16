@@ -1,6 +1,12 @@
 <script setup lang="ts">
+import AboutProjectList from '@/components/AboutProjectList.vue'
+
 const config = useAppConfig()
 const { data: about } = await useAsyncData(() => queryCollection('pages').path('/about').first())
+
+const { data: projects } = await useAsyncData('about-projects', () =>
+  queryCollection('projects').where('featured', '=', true).order('order', 'ASC').order('id', 'ASC').all(),
+)
 
 useSeoMeta({
   title: () => about.value?.seoTitle ?? config.seo.title,
@@ -22,13 +28,19 @@ useSeoMeta({
       </header>
 
       <div class="about-page__content">
-        <ContentRenderer :value="about?.body ?? {}" />
+        <ContentRenderer
+          :value="about?.body ?? {}"
+          :data="{ projects: projects ?? [] }"
+          :components="{ 'about-project-list': AboutProjectList }"
+        />
       </div>
     </article>
   </main>
 </template>
 
 <style scoped lang="scss">
+@use '@/assets/styles/lists' as lists;
+
 .about-page {
   min-height: 100dvh;
   padding: clamp(5rem, 11vw, 10rem) 0 clamp(7rem, 14vw, 13rem);
@@ -129,28 +141,8 @@ useSeoMeta({
 }
 
 .about-page__content :deep(ul) {
-  list-style: none;
-  margin-top: var(--space-4);
+  @include lists.content-list;
   margin-bottom: var(--space-8);
-  padding-left: 0;
-  color: var(--c-text-muted);
-}
-
-.about-page__content :deep(li) {
-  position: relative;
-  padding-left: 2rem;
-  margin-bottom: var(--space-2);
-}
-
-.about-page__content :deep(li::before) {
-  position: absolute;
-  top: 0.7em;
-  left: 0;
-  width: 0.75rem;
-  height: 1px;
-  background: var(--c-primary);
-  box-shadow: 0.375rem 0 0 var(--nyx-c-teal);
-  content: '';
 }
 
 .about-page__content :deep(a) {

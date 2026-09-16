@@ -40,6 +40,8 @@ I have always been drawn to multimedia. When I started studying, I was genuinely
 
 I work mainly on Kiswe Studio, and sometimes Kiswe Command Center: products used to manage and produce live streams and fan-engagement experiences. Kiswe builds technology around cloud production, streaming, distribution, and interactive digital experiences. The problems are niche and interesting: complex interfaces, real-time constraints, and the added pressure that comes with anything live.
 
+I also helped build the software behind Olympic Broadcasting Services' [Athlete Moment](https://www.kiswe.com/news/reflections-from-the-2024-olympics), used at the Olympic Games to connect athletes with friends and family through live video after their events. It brings together the parts of the job I enjoy: real-time communication, live production, and an interface that needs to make a meaningful interaction feel simple.
+
 In the team, I am both a front-end specialist and a bridge between product and engineering. I pushed for building our own shared component library to keep the look and feel consistent across products, and took the lead on that library: defining patterns, shaping component APIs, and making sure we solve problems once in a reusable way.
 
 Across every company I have worked at, I have ended up as the go-to person for CSS: the one people bring strange layout issues and styling bugs to when they do not make sense at first glance.
@@ -66,13 +68,12 @@ What keeps me motivated is that the products I work on are live and alive. They 
 
 ## Side projects and creative experiments
 
-Outside my day job, I like mixing code, visuals, and sound.
+Outside my day job, I build tools I want to use and experiment with code, visuals, and sound. Some become reusable libraries or self-hosted applications; others are a way to explore an interaction or a visual idea.
 
 A few examples:
-- [Video Projection Mapping](https://github.com/arnedecant/video-projection-mapping) ([Live demo](https://arnedecant.github.io/video-projection-mapping/))
-  Experiments with projecting visuals onto physical spaces and shapes using web technologies. It is a playground for mixing digital visuals with the physical world.
-- [WebGL Webcam Audio Visualizer](https://github.com/arnedecant/audio-visualiser) ([Live demo](https://arnedecant.github.io/audio-visualiser))
-  This app takes a camera feed and turns it into a particle system. Each particle responds to the colour of a specific video pixel and to the music being played. It is part WebGL and real-time graphics experiment, part excuse to combine audio, visuals, and interactivity.
+
+::about-project-list{:items="projects" demo-label="Live demo"}
+::
 
 I also like poking at smaller WebGL and audio-reactive experiments whenever something interesting pops into my head.
 
