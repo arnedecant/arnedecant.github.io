@@ -208,6 +208,17 @@
   }
 }
 
+@media screen and (max-width: 42rem) {
+  .resume-sheet {
+    margin-inline: calc(-1 * var(--page-gutter));
+  }
+
+  .resume-section,
+  .resume-sheet__contact {
+    padding-inline: var(--page-gutter);
+  }
+}
+
 @page {
   size: A4 portrait;
   margin: 14mm 16mm;

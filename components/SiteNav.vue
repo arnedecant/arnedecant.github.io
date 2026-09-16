@@ -110,7 +110,7 @@ onBeforeUnmount(() => {
         <NuxtLink v-for="link in links" :key="link.to" :to="link.to" @click="closeMenu">
           {{ link.label }}
         </NuxtLink>
-        <NuxtLink v-if="config.resume" class="site-nav__resume" :to="config.resume.to">
+        <NuxtLink v-if="config.resume" class="site-nav__resume" :to="config.resume.to" @click="closeMenu">
           {{ config.resume.label }}
         </NuxtLink>
         <SocialLinks compact class="site-nav__socials" />
