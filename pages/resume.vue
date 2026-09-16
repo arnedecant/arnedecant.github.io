@@ -71,47 +71,49 @@ function printResume() {
           <ExperienceList :items="experience ?? []" :education-label="resume?.resumeEducationLabel" />
         </section>
 
-        <section v-if="skills.length" class="resume-section" aria-labelledby="resume-skills-title">
-          <p class="resume-section__label">{{ resume?.resumeSkillsLabel }}</p>
-          <h2 id="resume-skills-title">{{ resume?.resumeSkillsTitle }}</h2>
-          <div class="resume-skills">
-            <div v-for="group in skills" :key="group.title" class="resume-skills__group">
-              <h3>{{ group.title }}</h3>
-              <p>{{ group.items.join(' / ') }}</p>
+        <div class="resume-second-page">
+          <section v-if="skills.length" class="resume-section" aria-labelledby="resume-skills-title">
+            <p class="resume-section__label">{{ resume?.resumeSkillsLabel }}</p>
+            <h2 id="resume-skills-title">{{ resume?.resumeSkillsTitle }}</h2>
+            <div class="resume-skills">
+              <div v-for="group in skills" :key="group.title" class="resume-skills__group">
+                <h3>{{ group.title }}</h3>
+                <p>{{ group.items.join(' / ') }}</p>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section v-if="projects?.length" class="resume-section" aria-labelledby="resume-projects-title">
-          <p class="resume-section__label">{{ resume?.resumeProjectsLabel }}</p>
-          <h2 id="resume-projects-title">{{ resume?.resumeProjectsTitle }}</h2>
-          <ResumeProjectList :items="projects ?? []" />
-        </section>
+          <section v-if="projects?.length" class="resume-section" aria-labelledby="resume-projects-title">
+            <p class="resume-section__label">{{ resume?.resumeProjectsLabel }}</p>
+            <h2 id="resume-projects-title">{{ resume?.resumeProjectsTitle }}</h2>
+            <ResumeProjectList :items="projects ?? []" />
+          </section>
 
-        <section v-if="resume?.resumeCustomers?.length" class="resume-section" aria-labelledby="resume-customers-title">
-          <p class="resume-section__label">{{ resume?.resumeCustomersLabel }}</p>
-          <h2 id="resume-customers-title">{{ resume?.resumeCustomersTitle }}</h2>
-          <dl class="resume-customers">
-            <div v-for="item in resume.resumeCustomers" :key="item.product" class="resume-customers__group">
-              <dt>{{ item.product }}</dt>
-              <dd>{{ item.customers.join(', ') }}</dd>
+          <section v-if="resume?.resumeCustomers?.length" class="resume-section" aria-labelledby="resume-customers-title">
+            <p class="resume-section__label">{{ resume?.resumeCustomersLabel }}</p>
+            <h2 id="resume-customers-title">{{ resume?.resumeCustomersTitle }}</h2>
+            <dl class="resume-customers">
+              <div v-for="item in resume.resumeCustomers" :key="item.product" class="resume-customers__group">
+                <dt>{{ item.product }}</dt>
+                <dd>{{ item.customers.join(', ') }}</dd>
+              </div>
+            </dl>
+          </section>
+
+          <footer class="resume-sheet__contact">
+            <div>
+              <p class="resume-section__label">{{ resume?.contactLabel }}</p>
+              <h2>{{ resume?.contactTitle }}</h2>
             </div>
-          </dl>
-        </section>
-
-        <footer class="resume-sheet__contact">
-          <div>
-            <p class="resume-section__label">{{ resume?.contactLabel }}</p>
-            <h2>{{ resume?.contactTitle }}</h2>
-          </div>
-          <div class="resume-contact-links">
-            <a :href="`mailto:${resume?.resumeEmail ?? config.site.email}`">{{ resume?.resumeEmail ?? config.site.email }}</a>
-            <a v-for="item in resume?.resumeLinks" :key="item.label" :href="item.to" target="_blank" rel="noreferrer">
-              <span class="resume-contact-links__label">{{ item.label }}</span>
-              <span class="resume-contact-links__url">{{ item.to }}</span>
-            </a>
-          </div>
-        </footer>
+            <div class="resume-contact-links">
+              <a :href="`mailto:${resume?.resumeEmail ?? config.site.email}`">{{ resume?.resumeEmail ?? config.site.email }}</a>
+              <a v-for="item in resume?.resumeLinks" :key="item.label" :href="item.to" target="_blank" rel="noreferrer">
+                <span class="resume-contact-links__label">{{ item.label }}</span>
+                <span class="resume-contact-links__url">{{ item.to }}</span>
+              </a>
+            </div>
+          </footer>
+        </div>
       </article>
     </div>
   </main>

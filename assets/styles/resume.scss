@@ -13,7 +13,6 @@
   justify-content: space-between;
   gap: var(--space-8);
   margin-bottom: var(--space-12);
-  border-bottom: 1px solid var(--c-border-subtle);
   padding-bottom: var(--space-8);
 }
 
@@ -65,6 +64,10 @@
   border-top: 1px solid var(--c-border);
   background: color-mix(in srgb, var(--c-surface) 38%, transparent);
   padding: 0 var(--space-8) var(--space-12);
+}
+
+.resume-second-page {
+  display: contents;
 }
 
 .resume-section {
@@ -250,6 +253,18 @@
     background: transparent !important;
   }
 
+  .resume-second-page {
+    display: flex;
+    flex-direction: column;
+    // A4 minus @page margins, with a pixel of tolerance for Firefox pagination.
+    min-height: calc(297mm - 28mm - 1px);
+    break-before: page;
+  }
+
+  .resume-second-page > * {
+    flex-shrink: 0;
+  }
+
   .resume-page__intro {
     margin-bottom: 4mm;
     padding: 5mm 6mm 2mm;
@@ -291,8 +306,9 @@
     break-inside: avoid;
   }
 
-  .resume-sheet > .resume-section:last-of-type {
+  .resume-second-page > .resume-section:last-of-type {
     border-bottom: 0;
+    margin-bottom: 5mm;
   }
 
   .resume-section.resume-summary,
@@ -334,7 +350,7 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
     align-items: start;
     gap: 6mm;
-    margin-top: 5mm;
+    margin-top: auto;
     padding: 5mm 6mm;
     break-inside: avoid;
   }
