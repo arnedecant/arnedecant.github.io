@@ -14,7 +14,7 @@ tech:
   - Vue 3
   - Tauri
 featured: true
-order: 3
+order: 5
 logo:
   src: "/images/anthos-logo.svg"
   alt: "Anthos purple circuit leaf logo"

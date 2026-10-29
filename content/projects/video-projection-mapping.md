@@ -10,7 +10,7 @@ tech:
 featured: true
 link: "https://arnedecant.github.io/video-projection-mapping"
 github: "https://www.github.com/arnedecant/video-projection-mapping"
-order: 3
+order: 4
 logo:
   alt: VPM
 ---
