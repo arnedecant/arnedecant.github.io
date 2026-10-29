@@ -4,9 +4,10 @@ import type { ProjectsCollectionItem } from '@nuxt/content'
 import { clamp, generateRandomString } from 'nyx-kit/utils'
 
 const props = defineProps<{
-  project: ProjectsCollectionItem
+  project: Pick<ProjectsCollectionItem, 'path' | 'title' | 'summary' | 'github' | 'link' | 'thumbnail' | 'logo' | 'abbreviation' | 'tech'>
 }>()
-const destination = computed(() => props.project.link || props.project.github)
+const destination = computed(() => props.project.path)
+const { ui: { projectDetails: labels } } = useAppConfig()
 
 const $deco = useTemplateRef<HTMLDivElement>('deco')
 const pointer = ref({ x: 0, y: 0 })
@@ -25,9 +26,11 @@ function onMouseMove (event: MouseEvent) {
 }
 
 function onClick (event: MouseEvent) {
-  if (event.target instanceof Element && event.target.closest('a')) return
+  if (event.target instanceof Element && event.target.closest('a, button, input, select, textarea')) return
+  if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+  if (window.getSelection()?.toString()) return
   if (!destination.value) return
-  navigateTo(destination.value, { external: true, open: { target: '_blank' } })
+  navigateTo(destination.value)
 }
 
 </script>
@@ -58,19 +61,25 @@ function onClick (event: MouseEvent) {
         <template v-else>{{ props.project.title }}</template>
       </figcaption>
     </figure>
-    <h1>{{ props.project.title }}</h1>
+    <h3><NuxtLink :to="destination">{{ props.project.title }}</NuxtLink></h3>
     <p>
       {{ props.project.summary }}
     </p>
     <ul class="links">
       <li v-if="props.project.github">
-        <NuxtLink :to="props.project.github" target="_blank">
-          <Icon name="line-md:github-loop" />
+        <NuxtLink :to="props.project.github" target="_blank" rel="noopener noreferrer" :aria-label="`${props.project.title} ${labels.githubSuffix} ${labels.newTabSuffix}`">
+          <Icon name="line-md:github-loop" aria-hidden="true" />
         </NuxtLink>
       </li>
       <li v-if="props.project.link">
-        <NuxtLink :to="props.project.link" target="_blank">
-          <Icon name="line-md:link" />
+        <NuxtLink :to="props.project.link" target="_blank" rel="noopener noreferrer" :aria-label="`${labels.websitePrefix} ${props.project.title} ${labels.newTabSuffix}`">
+          <Icon name="line-md:link" aria-hidden="true" />
+        </NuxtLink>
+      </li>
+      <li class="details-link">
+        <NuxtLink :to="destination" :aria-label="`${labels.explorePrefix} ${props.project.title}`">
+          <span class="details-link__label">{{ labels.exploreLabel }}</span>
+          <Icon name="line-md:arrow-right" aria-hidden="true" />
         </NuxtLink>
       </li>
     </ul>
@@ -97,10 +106,15 @@ function onClick (event: MouseEvent) {
   cursor: pointer;
 }
 
-h1 {
+h3 {
   font-size: 1.25em;
   margin-top: 1.5rem;
   font-weight: 300;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 p {
@@ -212,8 +226,16 @@ figure {
   display: flex;
   gap: 0.5rem;
   margin: auto 0 1rem;
+  padding: 0;
+  list-style: none;
+  align-items: center;
 
   a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
     color: var(--nyx-c-default);
 
     &:hover {
@@ -221,10 +243,23 @@ figure {
     }
   }
 
-  span {
+  .iconify {
     width: 1.5rem;
     height: 1.5rem;
   }
+}
+
+.details-link {
+  margin-left: auto;
+
+  a {
+    gap: 0.5rem;
+    color: var(--c-primary);
+  }
+}
+
+.details-link__label {
+  font-size: 0.8rem;
 }
 
 .deco {
@@ -273,6 +308,19 @@ figure {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-summary,
+  .deco,
+  figure figcaption::after {
+    transition: none;
+    animation: none;
+  }
+
+  .project-summary--linked:hover {
+    scale: 1;
   }
 }
 </style>

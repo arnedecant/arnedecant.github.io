@@ -10,7 +10,8 @@ const { data: experience } = await useAsyncData('resume-experience', () =>
 )
 
 const { data: projects } = await useAsyncData('resume-projects', () =>
-  queryCollection('projects').where('resumeFeatured', '=', true).order('order', 'ASC').order('id', 'ASC').all(),
+  queryCollection('projects').where('resumeFeatured', '=', true).order('order', 'ASC').order('id', 'ASC')
+    .select('id', 'path', 'featured', 'title', 'github', 'link', 'summary', 'tech').all(),
 )
 
 const { data: expertise } = await useAsyncData('resume-expertise', () =>

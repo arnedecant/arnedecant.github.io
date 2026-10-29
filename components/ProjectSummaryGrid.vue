@@ -8,6 +8,7 @@ const { ui } = useAppConfig()
 const { data: projects } = await useAsyncData('homepage-featured-projects', () => queryCollection('projects')
   .where('featured', '=', true)
   .order('order', 'ASC')
+  .select('slug', 'path', 'title', 'summary', 'github', 'link', 'thumbnail', 'logo', 'abbreviation', 'tech')
   .all())
 
 </script>

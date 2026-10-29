@@ -116,13 +116,24 @@ export default defineContentConfig({
     }),
 
     projects: defineCollection({
-      type: 'data',
-      source: 'projects/*.md',
+      type: 'page',
+      source: {
+        include: 'projects/*.md',
+        prefix: '/projects',
+      },
       schema: z.object({
         title: z.string(),
         abbreviation: z.string().optional(),
         slug: z.string(),
         summary: z.string().optional(),
+        lede: z.string().optional(),
+        screenshots: z.array(z.object({
+          src: z.string(),
+          alt: z.string(),
+          caption: z.string(),
+          width: z.number().int().positive(),
+          height: z.number().int().positive(),
+        })).default([]),
         description: z.string().optional(),
         category: z.string().optional(),
         role: z.string().optional(),

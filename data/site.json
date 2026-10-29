@@ -45,6 +45,7 @@
     "to": "/resume"
   },
   "seo": {
+    "url": "https://www.arnedecant.be",
     "title": "Arne Decant | Senior Software Engineer",
     "description": "Arne Decant - software engineer building tools and interfaces."
   },
@@ -97,6 +98,28 @@
       "actionLabel": "View my projects",
       "actionTo": "#work"
     },
-    "featuredProjectsTitle": "Featured projects"
+    "featuredProjectsTitle": "Featured projects",
+    "projectDetails": {
+      "exploreLabel": "Explore project",
+      "explorePrefix": "Explore",
+      "githubSuffix": "on GitHub",
+      "websitePrefix": "Open website for",
+      "newTabSuffix": "(opens in a new tab)",
+      "backLabel": "All featured projects",
+      "backFooterLabel": "Back to featured projects",
+      "linksLabel": "Project links",
+      "liveLabel": "Open live project",
+      "sourceLabel": "View source",
+      "roleLabel": "My role",
+      "statusLabel": "Project status",
+      "techLabel": "Built with",
+      "contentsLabel": "In this project",
+      "contentsAriaLabel": "On this page",
+      "galleryLabel": "More project screenshots",
+      "navigationLabel": "More projects",
+      "nextLabel": "Next project",
+      "openImagePrefix": "Open full-size image:",
+      "notFound": "Project not found"
+    }
   }
 }

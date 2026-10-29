@@ -1,0 +1,206 @@
+@use './lists' as lists;
+
+.project-page {
+  padding: clamp(3rem, 7vw, 6rem) 0 clamp(5rem, 12vw, 10rem);
+
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 2.75rem;
+    color: var(--c-text-muted);
+    font-size: 0.875rem;
+    text-decoration: none;
+  }
+
+  &__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.38fr);
+    align-items: end;
+    gap: clamp(2rem, 6vw, 7rem);
+    padding: clamp(3rem, 7vw, 6rem) 0 clamp(3rem, 6vw, 5rem);
+  }
+
+  &__eyebrow,
+  &__facts dt {
+    color: var(--c-primary);
+    font-family: var(--font-technical);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    line-height: 1.6;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    max-width: 15ch;
+    margin: 1.25rem 0 1.5rem;
+    font-size: clamp(2.75rem, 6.5vw, 6.5rem);
+    line-height: 1.04;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  &__lede {
+    max-width: 48ch;
+    color: var(--c-text-muted);
+    font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+    line-height: 1.65;
+  }
+
+  &__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+
+    a {
+      display: inline-flex;
+      gap: 0.75rem;
+      align-items: center;
+      min-height: 2.75rem;
+      font-size: 0.875rem;
+      text-decoration: none;
+    }
+  }
+
+  &__facts {
+    display: grid;
+    gap: 1.5rem;
+    margin: 0 0 0.5rem;
+
+    div {
+      padding-top: 1rem;
+      border-top: 1px solid var(--c-border-subtle);
+    }
+
+    dd {
+      margin: 0.5rem 0 0;
+      color: var(--c-text-muted);
+      font-size: 0.875rem;
+      line-height: 1.7;
+    }
+  }
+
+  &__story {
+    display: grid;
+    grid-template-columns: minmax(12rem, 1fr) minmax(0, 3fr);
+    align-items: start;
+    gap: clamp(2rem, 7vw, 8rem);
+    padding: clamp(4rem, 8vw, 8rem) 0;
+  }
+
+  &__contents {
+    position: sticky;
+    top: 2rem;
+
+    ul {
+      display: grid;
+      gap: 0.25rem;
+      margin-top: 1rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.75rem;
+      color: var(--c-text-muted);
+      font-size: 0.875rem;
+      text-decoration: none;
+
+      &:hover { color: var(--c-primary); }
+    }
+  }
+
+  &__prose {
+    max-width: 70ch;
+    min-width: 0;
+    color: var(--c-text-muted);
+    line-height: 1.8;
+
+    h2 {
+      margin: 4rem 0 1.5rem;
+      font-size: clamp(1.75rem, 3vw, 2.75rem);
+      line-height: 1.2;
+      scroll-margin-top: 2rem;
+
+      &:first-child { margin-top: 0; }
+      a { color: inherit; text-decoration: none; }
+    }
+
+    h3 {
+      margin: 2.5rem 0 1rem;
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      font-weight: 600;
+      line-height: 1.5;
+      scroll-margin-top: 2rem;
+
+      a { color: inherit; text-decoration: none; }
+    }
+
+    p { margin: 0 0 1.25rem; }
+    strong { color: var(--c-text); font-weight: 600; }
+    ul { @include lists.content-list; margin: 1.5rem 0; }
+    li + li { margin-top: 0.75rem; }
+    code { overflow-wrap: anywhere; font-size: 0.875em; }
+
+    .hero-portrait {
+      max-width: 28rem;
+      margin: 2.5rem auto;
+    }
+  }
+
+  &__gallery {
+    display: grid;
+    gap: 3rem;
+    margin-bottom: clamp(4rem, 8vw, 8rem);
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: end;
+    gap: 2rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--c-border);
+  }
+
+  &__next {
+    display: grid;
+    gap: 0.75rem;
+    text-decoration: none;
+
+    > span:last-child {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+    }
+  }
+}
+
+@media (max-width: 55em) {
+  .project-page {
+    &__header { grid-template-columns: 1fr; }
+    &__facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    &__story { grid-template-columns: 1fr; gap: 3rem; }
+    &__contents { position: static; }
+    &__contents ul { display: flex; flex-wrap: wrap; gap: 0 1.5rem; }
+  }
+}
+
+@media (max-width: 35em) {
+  .project-page {
+    &__facts { grid-template-columns: 1fr; gap: 1rem; }
+    &__facts div { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; }
+    &__facts dd { margin-top: 0; }
+    &__prose h2 { margin-top: 3rem; }
+  }
+}

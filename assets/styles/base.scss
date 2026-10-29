@@ -36,6 +36,16 @@ h1 {
   letter-spacing: -0.02em;
 }
 
+// Nyx Kit's global code rule also targets Markdown's inline code spans.
+:not(pre) > code {
+  display: inline;
+  margin: 0;
+  padding: 0.125em 0.35em;
+  border-radius: var(--radius-sm);
+  font-size: 0.875em;
+  box-decoration-break: clone;
+}
+
 main {
   position: relative;
   min-height: 100dvh;

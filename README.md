@@ -33,9 +33,10 @@ application where the pages and project entries live in Markdown. It is both a
 place to explore my work and a small example of how I approach frontend
 architecture, content modeling, and visual detail.
 
-The launch includes the homepage, extended About page, and resume. Project
-summaries are shared across these pages with external demo and source links; separate
-project listing and detail pages are deferred.
+The site includes the homepage, extended About page, resume, and a dedicated
+detail page for each featured project at `/projects/<slug>`. Project cards, the
+About list, and featured resume project titles link to these pages; demo and
+source links remain available. The printed resume still includes repository URLs.
 
 The site is built with:
 
@@ -47,7 +48,8 @@ The site is built with:
 
 ## Run Locally
 
-Requirements: Node.js and [pnpm](https://pnpm.io/).
+CI runs on Node.js 22 with the [pnpm](https://pnpm.io/) version pinned in
+`package.json`.
 
 ```bash
 pnpm install
@@ -62,10 +64,29 @@ Useful commands:
 pnpm build    # Build for production
 pnpm generate # Generate a static site
 pnpm preview  # Preview the production build
+pnpm lint     # Run Oxlint and ESLint without changing files
+pnpm test     # Run unit tests once
+pnpm typecheck # Check Nuxt/Vue TypeScript types
 ```
 
 Content can be edited directly in `content/` or through Nuxt Studio when it is
 enabled.
+
+## Continuous integration
+
+`.github/workflows/ci.yml` follows Echo's three independent jobs on pull requests,
+pushes to `main`, and manual dispatch: Lint, Unit tests, and Build. It uses the
+same pinned actions, Node 22, pnpm-store caching, read-only permissions, ten-minute
+job timeouts, and cancellation of older runs for the same PR or branch.
+
+Lint runs Oxlint and ESLint without auto-fixing files; ESLint still runs if
+Oxlint fails after dependencies install successfully. Unit tests use Vitest in
+run mode and cover the shared Markdown link policy, including internal URLs,
+external targets, native email/telephone actions, and malformed URLs. The Build
+job runs `pnpm typecheck` and `pnpm generate` to check the actual static deployment
+artifact. No job suppresses failed checks or passes an empty test suite.
+
+GitHub Pages deployment remains in the separate deployment workflow.
 
 ## Editing site content
 
@@ -78,7 +99,12 @@ enabled.
   `featured: true` for the homepage and About page, and `resumeFeatured: true`
   for the resume. All three views use the same records and generated
   `ProjectsCollectionItem` type; edit a summary here to update it everywhere.
-  The About page embeds its list in Markdown through `AboutProjectList`.
+  The Markdown body is the project's case study. Optional `lede`, `role`,
+  `category`, and `status` fields provide the detail-page introduction.
+  `screenshots` contains `src`, `alt`, `caption`, `width`, and `height`; the first
+  image leads the page and the rest appear in its gallery. Store optimized
+  captures in `public/images/projects/<slug>/`. The About page embeds its list
+  in Markdown through `AboutProjectList`.
 - `content/expertise/*.md`: shared capability groups with a title, description,
   and skill items. The homepage shows all groups; `resumeFeatured: true` also
   includes a group's title and items in the resume, after its page-specific
@@ -103,6 +129,26 @@ words out of Vue templates, script defaults, and CSS generated content. Structur
 route IDs, icon identifiers, formatting punctuation, and technical configuration
 remain in code. Documentation remains authored in Markdown.
 
+Markdown links use `components/ProseA.global.vue` across ContentRenderer and MDC.
+Links to external HTTP(S) websites open in a new tab with `noopener noreferrer`.
+Relative paths, section anchors, links to the configured site URL or current
+origin, and email/telephone actions retain their normal behavior. Authors do
+not need to add `target="_blank"` to each external Markdown link.
+
+Project Markdown can also embed explicitly registered Vue components. Nyx Fission
+includes the live portrait with:
+
+```md
+::hero-portrait{fallback-src="/images/projects/nyx-fission/portrait.webp" fallback-alt="Portrait of Arne Decant"}
+::
+```
+
+The shared project route maps `hero-portrait` to the existing `HeroPortrait`
+component; it does not need a dedicated page. Its optional fallback image remains
+visible until the renderer is ready, including when reduced motion is enabled or
+media/WebGL is unavailable. Register additional embeds in the route's
+`ContentRenderer` component map.
+
 ### Content paths and editor previews
 
 Page content paths must match the public Vue routes because the editor uses them
@@ -111,9 +157,16 @@ for preview navigation. The pages collection sets `source.prefix: '/'`, so
 `/about`. The homepage keeps its descriptive `home.md` filename and overrides
 its path to `/` in frontmatter. Page queries use these public paths too.
 
-Project entries are currently a `data` collection for home, About, and resume summaries, with
-no detail routes. When adding detail pages, use a `page` collection with
+Project entries use a `page` collection with
 `source: { include: 'projects/*.md', prefix: '/projects' }` and a matching
 `pages/projects/[slug].vue` route that queries the collection by the public path.
 The content prefix sets the record's URL; the Vue page provides the route that
 renders it. This keeps `/projects/<slug>` consistent in links and editor previews.
+Use a filename matching `slug` so the generated path stays aligned. The detail
+route only renders featured entries; unknown and unfeatured paths return 404.
+Static generation discovers the six featured detail pages through real links
+on the homepage, then follows their next-project navigation.
+
+Research sources, screenshot provenance, and unanswered editorial questions live
+in [the project input tracker](docs/PROJECT_DETAILS_INPUT.md). Keep that file
+updated when answers or new project evidence become available.

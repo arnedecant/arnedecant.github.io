@@ -5,7 +5,8 @@ const config = useAppConfig()
 const { data: about } = await useAsyncData(() => queryCollection('pages').path('/about').first())
 
 const { data: projects } = await useAsyncData('about-projects', () =>
-  queryCollection('projects').where('featured', '=', true).order('order', 'ASC').order('id', 'ASC').all(),
+  queryCollection('projects').where('featured', '=', true).order('order', 'ASC').order('id', 'ASC')
+    .select('id', 'path', 'title', 'github', 'link', 'summary').all(),
 )
 
 useSeoMeta({
