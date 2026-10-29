@@ -13,8 +13,8 @@ tech:
   - Tauri
   - REST
   - SSE
-featured: true
-resumeFeatured: true
+featured: false
+resumeFeatured: false
 order: 4
 logo:
   src: "/images/nyx-notes-logo.svg"
