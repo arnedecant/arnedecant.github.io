@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import type { NyxFission } from 'nyx-fission'
 
+const props = defineProps<{
+  fallbackSrc?: string
+  fallbackAlt?: string
+}>()
+
 const portrait = useTemplateRef<HTMLDivElement>('portrait')
 const canvas = useTemplateRef<HTMLCanvasElement>('canvas')
 const baseURL = useRuntimeConfig().app.baseURL
@@ -88,6 +93,14 @@ onBeforeUnmount(() => {
 
 <template>
   <div ref="portrait" class="hero-portrait" :class="{ 'hero-portrait--ready': isReady }" :role="isReady ? 'img' : undefined" :aria-label="isReady ? 'Portrait of Arne Decant' : undefined">
+    <img
+      v-if="props.fallbackSrc && !isReady"
+      class="hero-portrait__fallback"
+      :src="props.fallbackSrc"
+      :alt="props.fallbackAlt ?? ''"
+      loading="lazy"
+      decoding="async"
+    >
     <canvas ref="canvas" class="hero-portrait__canvas" aria-hidden="true" />
   </div>
 </template>
@@ -109,12 +122,20 @@ onBeforeUnmount(() => {
   );
 }
 
+.hero-portrait__fallback,
 .hero-portrait__canvas {
   display: block;
   width: 100%;
   height: 100%;
   position: absolute;
   inset: 0;
+}
+
+.hero-portrait__fallback {
+  object-fit: cover;
+}
+
+.hero-portrait__canvas {
   opacity: 0;
   // Crop the source video's letterboxing out of the visible portrait.
   transform: scale(1.5);

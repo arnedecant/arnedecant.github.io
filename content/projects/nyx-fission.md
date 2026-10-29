@@ -11,11 +11,6 @@ screenshots:
     caption: "The library's Vue playground, captured from the committed demo with its bundled media. Vue is used for the demo, not required by the library."
     width: 1440
     height: 1000
-  - src: "/images/projects/nyx-fission/portrait.webp"
-    alt: "Arne's portfolio portrait rendered as cyan and violet particles using Nyx Fission."
-    caption: "A real integration: the animated portrait on this portfolio uses Nyx Fission with video input and a vortex entrance."
-    width: 411
-    height: 548
 summary: "A framework-independent WebGL library that transforms images, video, and webcam feeds into interactive particle fields. Handles media sampling, rendering, resizing, and cleanup; powers my portfolio's animated portrait."
 tech:
   - TypeScript
@@ -44,6 +39,13 @@ This portfolio's animated portrait is one of its real uses. The separate playgro
 - **Entrance animations.** Presets can start automatically or be replayed manually, with configurable timing.
 - **Pointer interaction.** Attract, repel, push, and pull effects move particles in the image plane or in depth.
 - **An inspectable playground.** Controls produce copyable configuration and integration examples alongside the live result.
+
+## A live example
+
+This is the same animated portrait used on my homepage. Move your pointer across it to displace the particles. A still portrait appears when reduced motion is enabled or the animation cannot load.
+
+::hero-portrait{fallback-src="/images/projects/nyx-fission/portrait.webp" fallback-alt="Arne's portrait rendered as cyan and violet particles using Nyx Fission."}
+::
 
 ## Problems I worked through
 

@@ -27,6 +27,8 @@ Page: `/projects/nyx-fission`
 
 Established: framework-independent media-to-particle API, media lifecycle, luma keying, themes, entrance replay, pointer effects, and this portfolio's portrait integration.
 
+The case study now embeds the existing `HeroPortrait` component directly from Markdown under “A live example”, using the shared route's explicit component map. The earlier portrait screenshot is retained only as an optional still fallback for loading, reduced motion, and unavailable media/WebGL. No dedicated project page or duplicated renderer was added.
+
 - [ ] What prompted you to extract the effect into its own library? Is there a direct relationship to the audio visualiser that you want described?
 - [ ] Are there uses outside this portfolio that can be linked?
 - [ ] The local checkout contains uncommitted PNG-export work. Confirm when that is released before adding export as a public capability; this case study excludes it.
@@ -88,14 +90,14 @@ Evidence: committed `arnedecant/audio-visualiser` at `34d43bc`, [README](https:/
 
 ## Screenshot inventory
 
-All shipped images are real browser screenshots, converted to WebP. No generated UI, design concepts, external inspiration images, private messages, or physical webcam capture is included. Captions identify synthetic/demo data. Full-size assets are linked directly from the detail pages.
+All shipped images are real browser screenshots, converted to WebP. No generated UI, design concepts, external inspiration images, private messages, or physical webcam capture is included. Captions identify synthetic/demo data. Gallery screenshots link to their full-size assets; the portrait capture now serves as the live example's still fallback.
 
 | Project | Asset under `public/images/projects/` | Origin |
 | --- | --- | --- |
 | NyxKit | `nyxkit/components.webp` | Local Storybook, `Components/Basic/NyxButton`, All story. |
 | NyxKit | `nyxkit/command-palette.webp` | Local Storybook command palette, AlwaysShown story, opened through its trigger. |
 | Nyx Fission | `nyx-fission/playground.webp` | Committed demo, real WebGL renderer with its bundled SVG fixture. |
-| Nyx Fission | `nyx-fission/portrait.webp` | This portfolio's About-page portrait, rendered with the existing public portrait video. |
+| Nyx Fission | `nyx-fission/portrait.webp` | This portfolio's About-page portrait, rendered with the existing public portrait video. Used as the fallback for the embedded live portrait, not a separate gallery screenshot. |
 | Echo | `echo/conversation-library.webp` | Existing `build/synthetic-library.png`, produced by `scripts/check-library-browser.mjs`; only synthetic conversation and provider output. |
 | Video Projection Mapping | `video-projection-mapping/heart.webp`, `interaction.webp` | Live app, heart mask, original bundled concert clip transcoded temporarily for browser compatibility. Second view uses the actual orbit and pointer interaction. |
 | Anthos | `anthos/dashboard.webp` | Actual local Vue app, isolated browser, all `/api/**` requests intercepted with invented nodes/readings/user/logs. Existing hardcoded prototype health figures remain demo values. No API server or device was contacted. |
@@ -118,5 +120,6 @@ Verified on 2026-10-29:
 - Chromium checks pass for every detail page at 1440, 768, 390, and 320 CSS pixels: headings, contents anchors, image loading and dimensions, metadata, and horizontal overflow.
 - Generated-site checks cover card clicks, keyboard links, right-aligned arrow links, separate GitHub popups, About links, resume title links, printed repository URLs, and the complete next-project cycle.
 - Browser checks find no uncaught errors or hydration warnings in the generated site.
+- The generated Nyx Fission page also passes checks for the Markdown component embed, live changing frames, pointer interaction, offscreen stop/restart, route unmount, and the still fallback under reduced motion, failed video, or unavailable WebGL. Reduced motion does not request the portrait video.
 - Home, About, and resume queries select summary fields only; their payloads exclude the full case-study bodies.
-- Ten WebP screenshots total approximately 980 KiB on disk. Secondary images load lazily; the leading image has explicit dimensions and priority loading.
+- Nine gallery screenshots and one portrait fallback total approximately 980 KiB of WebP assets on disk. Secondary images load lazily; the leading image has explicit dimensions and priority loading.

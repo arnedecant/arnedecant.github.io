@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import HeroPortrait from '@/components/HeroPortrait.vue'
+
 definePageMeta({ key: route => route.path })
 
 const route = useRoute()
@@ -84,7 +86,11 @@ useHead({ link: [{ rel: 'canonical', href: `${seo.url}${path}` }] })
             </li>
           </ul>
         </nav>
-        <ContentRenderer class="project-page__prose" :value="project" />
+        <ContentRenderer
+          class="project-page__prose"
+          :value="project"
+          :components="{ 'hero-portrait': HeroPortrait }"
+        />
       </div>
 
       <section v-if="otherImages.length" class="project-page__gallery" :aria-label="labels.galleryLabel">

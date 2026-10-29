@@ -148,6 +148,11 @@
     ul { @include lists.content-list; margin: 1.5rem 0; }
     li + li { margin-top: 0.75rem; }
     code { overflow-wrap: anywhere; font-size: 0.875em; }
+
+    .hero-portrait {
+      max-width: 28rem;
+      margin: 2.5rem auto;
+    }
   }
 
   &__gallery {

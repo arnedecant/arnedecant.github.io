@@ -115,6 +115,20 @@ Relative paths, section anchors, links to the configured site URL or current
 origin, and email/telephone actions retain their normal behavior. Authors do
 not need to add `target="_blank"` to each external Markdown link.
 
+Project Markdown can also embed explicitly registered Vue components. Nyx Fission
+includes the live portrait with:
+
+```md
+::hero-portrait{fallback-src="/images/projects/nyx-fission/portrait.webp" fallback-alt="Portrait of Arne Decant"}
+::
+```
+
+The shared project route maps `hero-portrait` to the existing `HeroPortrait`
+component; it does not need a dedicated page. Its optional fallback image remains
+visible until the renderer is ready, including when reduced motion is enabled or
+media/WebGL is unavailable. Register additional embeds in the route's
+`ContentRenderer` component map.
+
 ### Content paths and editor previews
 
 Page content paths must match the public Vue routes because the editor uses them
