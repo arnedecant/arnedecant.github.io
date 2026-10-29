@@ -2,7 +2,7 @@
 import type { ProjectsCollectionItem } from '@nuxt/content'
 
 defineProps<{
-  items: ProjectsCollectionItem[]
+  items: Pick<ProjectsCollectionItem, 'id' | 'path' | 'title' | 'github' | 'link' | 'summary'>[]
   demoLabel: string
 }>()
 </script>
@@ -10,7 +10,7 @@ defineProps<{
 <template>
   <ul class="about-project-list">
     <li v-for="project in items" :key="project.id">
-      <a :href="project.github" target="_blank" rel="noreferrer">{{ project.title }}</a>
+      <NuxtLink :to="project.path">{{ project.title }}</NuxtLink>
       <template v-if="project.link">
         (<a :href="project.link" target="_blank" rel="noreferrer">{{ demoLabel }}</a>)
       </template>

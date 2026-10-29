@@ -2,7 +2,7 @@
 import type { ProjectsCollectionItem } from '@nuxt/content'
 
 defineProps<{
-  items: ProjectsCollectionItem[]
+  items: Pick<ProjectsCollectionItem, 'id' | 'path' | 'featured' | 'title' | 'github' | 'link' | 'summary' | 'tech'>[]
 }>()
 </script>
 
@@ -11,10 +11,15 @@ defineProps<{
     <article v-for="project in items" :key="project.id" class="resume-projects__item">
       <div class="resume-projects__heading">
         <h3>
-          <a class="resume-projects__title" :href="project.link || project.github" target="_blank" rel="noreferrer">
+          <NuxtLink
+            class="resume-projects__title"
+            :to="project.featured ? project.path : project.link || project.github"
+            :target="project.featured ? undefined : '_blank'"
+            rel="noreferrer"
+          >
             {{ project.title }}
-            <Icon class="resume-projects__link-icon" name="line-md:link" aria-hidden="true" />
-          </a>
+            <Icon class="resume-projects__link-icon" :name="project.featured ? 'line-md:arrow-right' : 'line-md:link'" aria-hidden="true" />
+          </NuxtLink>
           <span class="resume-projects__repository">(<a :href="project.github" target="_blank" rel="noreferrer">{{ project.github }}</a>)</span>
         </h3>
         <p v-if="project.tech.length" class="resume-projects__tech">{{ project.tech.join(' / ') }}</p>
