@@ -48,7 +48,8 @@ The site is built with:
 
 ## Run Locally
 
-Requirements: Node.js and [pnpm](https://pnpm.io/).
+CI runs on Node.js 22 with the [pnpm](https://pnpm.io/) version pinned in
+`package.json`.
 
 ```bash
 pnpm install
@@ -63,10 +64,29 @@ Useful commands:
 pnpm build    # Build for production
 pnpm generate # Generate a static site
 pnpm preview  # Preview the production build
+pnpm lint     # Run Oxlint and ESLint without changing files
+pnpm test     # Run unit tests once
+pnpm typecheck # Check Nuxt/Vue TypeScript types
 ```
 
 Content can be edited directly in `content/` or through Nuxt Studio when it is
 enabled.
+
+## Continuous integration
+
+`.github/workflows/ci.yml` follows Echo's three independent jobs on pull requests,
+pushes to `main`, and manual dispatch: Lint, Unit tests, and Build. It uses the
+same pinned actions, Node 22, pnpm-store caching, read-only permissions, ten-minute
+job timeouts, and cancellation of older runs for the same PR or branch.
+
+Lint runs Oxlint and ESLint without auto-fixing files; ESLint still runs if
+Oxlint fails after dependencies install successfully. Unit tests use Vitest in
+run mode and cover the shared Markdown link policy, including internal URLs,
+external targets, native email/telephone actions, and malformed URLs. The Build
+job runs `pnpm typecheck` and `pnpm generate` to check the actual static deployment
+artifact. No job suppresses failed checks or passes an empty test suite.
+
+GitHub Pages deployment remains in the separate deployment workflow.
 
 ## Editing site content
 

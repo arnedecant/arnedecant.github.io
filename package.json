@@ -2,12 +2,18 @@
   "name": "arnedecant.github.io",
   "type": "module",
   "private": true,
+  "packageManager": "pnpm@10.34.4",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --port 9001",
     "generate": "nuxt generate",
     "preview": "nuxt preview --port 9002",
     "postinstall": "nuxt prepare",
+    "lint": "pnpm lint:oxlint && pnpm lint:eslint",
+    "lint:oxlint": "oxlint components layouts pages plugins utils tests *.ts *.mjs -D correctness --ignore-path .gitignore",
+    "lint:eslint": "eslint components layouts pages plugins utils tests *.ts *.mjs --no-fix",
+    "test": "vitest run",
+    "typecheck": "nuxt typecheck",
     "deploy:github": "gh-pages -d .output/public",
     "clean": "rm -rf .nuxt .output node_modules"
   },
@@ -30,9 +36,13 @@
     "zod": "^4.1.13"
   },
   "devDependencies": {
+    "@types/node": "^22.20.5",
     "gh-pages": "^6.3.0",
+    "oxlint": "^1.90.0",
     "sass-embedded": "^1.93.3",
-    "typescript": "~5.9.3"
+    "typescript": "~5.9.3",
+    "vitest": "^3.2.7",
+    "vue-tsc": "^3.3.13"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

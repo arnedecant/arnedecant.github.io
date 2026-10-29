@@ -64,7 +64,7 @@ export default defineNuxtConfig({
 
   studio: {
     // route: '/studio',
-    github: {
+    repository: {
       provider: 'github',
       owner: 'arnedecant',
       repo: 'arnedecant.github.io',
